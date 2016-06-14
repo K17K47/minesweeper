@@ -4,56 +4,56 @@
 #include <stdlib.h>
 #include <time.h>
 
-void CriarTabuleiroUsr( tabuleiro_t usr )
+void CriarTabuleiroUsr( tabuleiro_t * usr )
 {
 	int i, j; 
 	vec v;
-	for( j = 0; j < get_m( gabarito ); j++ )
+	for( j = 0; j < get_m( *usr ); j++ )
 	{
-		for( i = 0; i < get_n( gabarito ); i++)
+		for( i = 0; i < get_n( *usr ); i++)
 		{
 			v.x = i;
 			v.y = j;
-			set_usr( &usr, v, '*' );	
+			set_usr( usr, v, '*' );	
 		}
 	}
 }
 
-void CriarTabuleiroGabarito( tabuleiro_t gabarito )
+void CriarTabuleiroGabarito( tabuleiro_t * gabarito )
 {
 	int i, j; 
 	vec v;
-	for( j = 0; j < get_m( gabarito ); j++ )
+	for( j = 0; j < get_m( *gabarito ); j++ )
 	{
-		for( i = 0; i < get_n( gabarito ); i++)
+		for( i = 0; i < get_n( *gabarito ); i++)
 		{
 			v.x = i;
 			v.y = j;
-			set_gabarito( &gabarito, v, '*' );	
+			set_gabarito( gabarito, v, '*' );	
 		}
 	}
 }
 
-void ColocarBombas( tabuleiro_t gabarito) //q = get_q( gabarito ) 
+void ColocarBombas( tabuleiro_t * gabarito) //q = get_q( gabarito ) 
 {
 	unsigned x, y;
 	
 	srand(time(0));
 	
-	x = rand() % get_n( gabarito );
-	y = rand() % get_m( gabarito );
+	x = rand() % get_n( *gabarito );
+	y = rand() % get_m( *gabarito );
 	
 	vec v;
 	v.x = x;
 	v.y = y;	
 
-	if(get_gabarito( gabarito, v ) == 'B')
+	if(get_gabarito( *gabarito, v ) == 'B')
 	{
 		ColocarBombas( gabarito );
 	}
 	else
 	{
-		set_gabarito( &gabarito, v, 'B' );
+		set_gabarito( gabarito, v, 'B' );
 	}
 }
 
@@ -65,37 +65,46 @@ for(i = 0; i < q; i++) //coloca bombas
 		}
 */
 
-void AvaliarVizinhos(tabuleiro_t) //(int m, int n, char *data)
+void AvaliarVizinhos( tabuleiro_t * gabarito ) //(int m, int n, char *data)
 {
 	int x, y, i, j, b;
-	for( y = 0; y < n; y++)
+	vec v;
+	char a;
+	for( y = 0; y < get_m( *gabarito ); y++)
 	{
-		for( x = 0; x < m; x++)
+		for( x = 0; x < get_n( *gabarito ); x++)
 		{
+			v.x = x;
+			v.y = y;
 			b = 0;
-			if(data[y * m + x] == 'B') //pula elementos com bombas
+			if( get_gabarito( gabarito, v ) == 'B') //pula elementos com bombas
 			{
 				continue;
 			}
-			for(i = -1; i < 2; i++)
+			for( i = -1; i < 2; i++ )
 			{
-				for(j= -1; j < 2; j++)
+				for( j = -1; j < 2; j++ )
 				{
-					if(i==0 && j==0) //pula o próprio elemento
+					if( i==0 && j==0 ) //pula o próprio elemento
 					{
 						continue;
 					}
-					if( y + j < 0 || x + i < 0 || y + j >= n || x + i >= m) // pula indevidos/inexistentes
+					if( y + j < 0 || x + i < 0 || y + j >= get_m( *gabarito ) || x + i >= get_n( *gabarito )) //pula indevidos/inexistentes
 					{
 						continue;
 					}
-					if(data[( y + j ) * m + x + i] == 'B')
+					v.x = x + i;
+					v.y = y + j;
+					if( get_gabarito( gabarito, v ) == 'B')
 					{
 						b = b + 1;
 					}
 				}	
 			}
-			data[y * m + x] = (char) q + '0'; //transformar q em char
+			v.x = x;
+			v.y = y;
+			a = (char) q + '0'; //transformar q em char
+			set_gabarito( gabarito, v, a );
 		}
 	}
 }
