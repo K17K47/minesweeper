@@ -7,11 +7,14 @@
 void CriarTabuleiroUsr( tabuleiro_t usr )
 {
 	int i, j; 
+	vec v;
 	for( j = 0; j < get_m( gabarito ); j++ )
 	{
 		for( i = 0; i < get_n( gabarito ); i++)
 		{
-			set_usr( &usr, j , i, '*' );	
+			v.x = i;
+			v.y = j;
+			set_usr( &usr, v, '*' );	
 		}
 	}
 }
@@ -19,30 +22,38 @@ void CriarTabuleiroUsr( tabuleiro_t usr )
 void CriarTabuleiroGabarito( tabuleiro_t gabarito )
 {
 	int i, j; 
+	vec v;
 	for( j = 0; j < get_m( gabarito ); j++ )
 	{
 		for( i = 0; i < get_n( gabarito ); i++)
 		{
-			set_gabarito( &gabarito, j , i, '*' );	
+			v.x = i;
+			v.y = j;
+			set_gabarito( &gabarito, v, '*' );	
 		}
 	}
 }
 
-void ColocarBombas( tabuleiro_t gabarito, q ) //q = get_q(gabarito) 
+void ColocarBombas( tabuleiro_t gabarito) //q = get_q( gabarito ) 
 {
-	int x, y;
+	unsigned x, y;
+	
 	srand(time(0));
 	
 	x = rand() % get_n( gabarito );
 	y = rand() % get_m( gabarito );
 	
-	if(data[y * m + x] == 'B')
+	vec v;
+	v.x = x;
+	v.y = y;	
+
+	if(get_gabarito( gabarito, v ) == 'B')
 	{
-		ColocarBombas(m, n, data);
+		ColocarBombas( gabarito );
 	}
 	else
 	{
-		data[y * m + x] = 'B';
+		set_gabarito( &gabarito, v, 'B' );
 	}
 }
 
