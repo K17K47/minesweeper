@@ -4,34 +4,56 @@
 #include <stdlib.h>
 #include <time.h>
 
-void CriarTabuleiro (tabuleiro_t) //( int m, int n, char *data )
+void CriarTabuleiroUsr( tabuleiro_t * usr )
 {
-	char * = malloc (m * n * sizeof(char));	
 	int i, j; 
-	for( j = 0; j < n; j++)
+	vec v;
+	for( j = 0; j < get_m( *usr ); j++ )
 	{
-		for( i = 0; i < m; i++)
+		for( i = 0; i < get_n( *usr ); i++)
 		{
-			data[j * m + i] = '*';
+			v.x = i;
+			v.y = j;
+			set_usr( usr, v, '*' );	
 		}
 	}
 }
 
-void ColocarBombas(tabuleiro_t, //bombas//) //(int m, int n, char *data) 
+void CriarTabuleiroGabarito( tabuleiro_t * gabarito )
 {
-	int x, y;
+	int i, j; 
+	vec v;
+	for( j = 0; j < get_m( *gabarito ); j++ )
+	{
+		for( i = 0; i < get_n( *gabarito ); i++)
+		{
+			v.x = i;
+			v.y = j;
+			set_gabarito( gabarito, v, '*' );	
+		}
+	}
+}
+
+void ColocarBombas( tabuleiro_t * gabarito) //q = get_q( gabarito ) 
+{
+	unsigned x, y;
+	
 	srand(time(0));
 	
-	x = rand() % m;
-	y = rand() % n;
+	x = rand() % get_n( *gabarito );
+	y = rand() % get_m( *gabarito );
 	
-	if(data[y * m + x] == 'B')
+	vec v;
+	v.x = x;
+	v.y = y;	
+
+	if(get_gabarito( *gabarito, v ) == 'B')
 	{
-		ColocarBombas(m, n, data);
+		ColocarBombas( gabarito );
 	}
 	else
 	{
-		data[y * m + x] = 'B';
+		set_gabarito( gabarito, v, 'B' );
 	}
 }
 
@@ -43,64 +65,77 @@ for(i = 0; i < q; i++) //coloca bombas
 		}
 */
 
-void AvaliarVizinhos(tabuleiro_t) //(int m, int n, char *data)
+void AvaliarVizinhos( tabuleiro_t * gabarito ) //(int m, int n, char *data)
 {
 	int x, y, i, j, b;
-	for( y = 0; y < n; y++)
+	vec v;
+	char a;
+	for( y = 0; y < get_m( *gabarito ); y++)
 	{
-		for( x = 0; x < m; x++)
+		for( x = 0; x < get_n( *gabarito ); x++)
 		{
+			v.x = x;
+			v.y = y;
 			b = 0;
-			if(data[y * m + x] == 'B') //pula elementos com bombas
+			if( get_gabarito( gabarito, v ) == 'B') //pula elementos com bombas
 			{
 				continue;
 			}
-			for(i = -1; i < 2; i++)
+			for( i = -1; i < 2; i++ )
 			{
-				for(j= -1; j < 2; j++)
+				for( j = -1; j < 2; j++ )
 				{
-					if(i==0 && j==0) //pula o próprio elemento
+					if( i==0 && j==0 ) //pula o próprio elemento
 					{
 						continue;
 					}
-					if( y + j < 0 || x + i < 0 || y + j >= n || x + i >= m) // pula indevidos/inexistentes
+					if( y + j < 0 || x + i < 0 || y + j >= get_m( *gabarito ) || x + i >= get_n( *gabarito )) //pula indevidos/inexistentes
 					{
 						continue;
 					}
-					if(data[( y + j ) * m + x + i] == 'B')
+					v.x = x + i;
+					v.y = y + j;
+					if( get_gabarito( gabarito, v ) == 'B')
 					{
 						b = b + 1;
 					}
 				}	
 			}
-			data[y * m + x] = (char) q + '0'; //transformar q em char
+			v.x = x;
+			v.y = y;
+			a = (char) q + '0'; //transformar q em char
+			set_gabarito( gabarito, v, a );
 		}
 	}
 }
 
-void Revela(tabuleiro_t dados, tabuleiro_t cortina, jogada_t) //( int m, int n, int x, int y, char* info, char * cort )
+void Revela(tabuleiro_t * gabarito, tabuleiro_t * usr, jogada_t * jogada) //	//( int m, int n, int x, int y, char* info, char * cort )
 {
 	int i = -1, j = -1;
-	if(info[y * m + x] != '0')//garante nulidade
+	vec v;
+	v = //função do Abdalla
+	if( get_gabarito( gabarito, v ) != '0')//garante nulidade
 	{
 		return;
 	}
-	for(i = -1; i < 2; i++)
+	for( i = -1; i < 2; i++ )
 	{
-		for(j = -1; j < 2; j++)
+		for( j = -1; j < 2; j++ )
 		{
-			if( y + j < 0 || x + i < 0 || y + j >= n || x + i >= m) // pula indevidos/inexistentes
+			if( y + j < 0 || x + i < 0 || y + j >= get_m( gabarito ) || x + i >= get_n( gabarito ) ) // pula indevidos/inexistentes
 			{
 				continue;
 			}
-			if(cort[( y + j ) * m + x + i] == info[( y + j ) * m + x + i]) //pula já revelados
+			v.x = v.x + i;
+			v.y = v.y + j;
+			if( get_usr( usr, v ) ==  get_gabarito( gabarito, v ) ) //pula já revelados
 			{
 				continue;
 			}
 			else
 			{
-				cort[( y + j ) * m + x + i] = info[( y + j ) * m + x + i];
-				if(info[( y + j ) * m + x + i] == '0')
+				set_usr( usr, v, get_gabarito( gabarito, v ) )	;		
+				if( get_gabarito( gabarito, v ) == '0' )
 				{
 					revela( m, n, x + i, y + j, info, cort);
 				}	
