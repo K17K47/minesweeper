@@ -77,7 +77,7 @@ void AvaliarVizinhos( tabuleiro_t * gabarito ) //(int m, int n, char *data)
 			v.x = x;
 			v.y = y;
 			b = 0;
-			if( get_gabarito( gabarito, v ) == 'B') //pula elementos com bombas
+			if( get_gabarito( *gabarito, v ) == 'B') //pula elementos com bombas
 			{
 				continue;
 			}
@@ -95,7 +95,7 @@ void AvaliarVizinhos( tabuleiro_t * gabarito ) //(int m, int n, char *data)
 					}
 					v.x = x + i;
 					v.y = y + j;
-					if( get_gabarito( gabarito, v ) == 'B')
+					if( get_gabarito( *gabarito, v ) == 'B')
 					{
 						b = b + 1;
 					}
@@ -103,18 +103,17 @@ void AvaliarVizinhos( tabuleiro_t * gabarito ) //(int m, int n, char *data)
 			}
 			v.x = x;
 			v.y = y;
-			a = (char) q + '0'; //transformar q em char
+			a = (char) b + '0'; //transformar q em char
 			set_gabarito( gabarito, v, a );
 		}
 	}
 }
 
-void Revela(tabuleiro_t * gabarito, tabuleiro_t * usr, jogada_t * jogada) //	//( int m, int n, int x, int y, char* info, char * cort )
+void Revela(tabuleiro_t * gabarito, tabuleiro_t * usr, vec v) //v = get_coord( jogada )	//( int m, int n, int x, int y, char* info, char * cort )
 {
 	int i = -1, j = -1;
-	vec v;
-	v = //função do Abdalla
-	if( get_gabarito( gabarito, v ) != '0')//garante nulidade
+	int x, y;	
+	if( get_gabarito( *gabarito, v ) != '0') //garante nulidade
 	{
 		return;
 	}
@@ -122,22 +121,24 @@ void Revela(tabuleiro_t * gabarito, tabuleiro_t * usr, jogada_t * jogada) //	//(
 	{
 		for( j = -1; j < 2; j++ )
 		{
-			if( y + j < 0 || x + i < 0 || y + j >= get_m( gabarito ) || x + i >= get_n( gabarito ) ) // pula indevidos/inexistentes
+			if( y + j < 0 || x + i < 0 || y + j >= get_m( *gabarito ) || x + i >= get_n( *gabarito ) ) // pula indevidos/inexistentes
 			{
 				continue;
 			}
 			v.x = v.x + i;
 			v.y = v.y + j;
-			if( get_usr( usr, v ) ==  get_gabarito( gabarito, v ) ) //pula já revelados
+			if( get_usr( *usr, v ) ==  get_gabarito( *gabarito, v ) ) //pula já revelados
 			{
 				continue;
 			}
 			else
 			{
-				set_usr( usr, v, get_gabarito( gabarito, v ) )	;		
-				if( get_gabarito( gabarito, v ) == '0' )
+				set_usr( usr, v, get_gabarito( *gabarito, v ) )	;		
+				if( get_gabarito( *gabarito, v ) == '0' )
 				{
-					revela( m, n, x + i, y + j, info, cort);
+					v.x = v.x + i;
+					v.y = v.y + j;
+					Revela( gabarito, gabarito, v);
 				}	
 			}
 		}	
