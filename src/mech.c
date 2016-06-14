@@ -109,29 +109,33 @@ void AvaliarVizinhos( tabuleiro_t * gabarito ) //(int m, int n, char *data)
 	}
 }
 
-void Revela(tabuleiro_t dados, tabuleiro_t cortina, jogada_t) //( int m, int n, int x, int y, char* info, char * cort )
+void Revela(tabuleiro_t * gabarito, tabuleiro_t * usr, jogada_t * jogada) //	//( int m, int n, int x, int y, char* info, char * cort )
 {
 	int i = -1, j = -1;
-	if(info[y * m + x] != '0')//garante nulidade
+	vec v;
+	v = //função do Abdalla
+	if( get_gabarito( gabarito, v ) != '0')//garante nulidade
 	{
 		return;
 	}
-	for(i = -1; i < 2; i++)
+	for( i = -1; i < 2; i++ )
 	{
-		for(j = -1; j < 2; j++)
+		for( j = -1; j < 2; j++ )
 		{
-			if( y + j < 0 || x + i < 0 || y + j >= n || x + i >= m) // pula indevidos/inexistentes
+			if( y + j < 0 || x + i < 0 || y + j >= get_m( gabarito ) || x + i >= get_n( gabarito ) ) // pula indevidos/inexistentes
 			{
 				continue;
 			}
-			if(cort[( y + j ) * m + x + i] == info[( y + j ) * m + x + i]) //pula já revelados
+			v.x = v.x + i;
+			v.y = v.y + j;
+			if( get_usr( usr, v ) ==  get_gabarito( gabarito, v ) ) //pula já revelados
 			{
 				continue;
 			}
 			else
 			{
-				cort[( y + j ) * m + x + i] = info[( y + j ) * m + x + i];
-				if(info[( y + j ) * m + x + i] == '0')
+				set_usr( usr, v, get_gabarito( gabarito, v ) )	;		
+				if( get_gabarito( gabarito, v ) == '0' )
 				{
 					revela( m, n, x + i, y + j, info, cort);
 				}	
