@@ -4,26 +4,37 @@
 #include <stdlib.h>
 #include <time.h>
 
-void CriarTabuleiro (tabuleiro_t) //( int m, int n, char *data )
+void CriarTabuleiroUsr( tabuleiro_t usr )
 {
-	char * = malloc (m * n * sizeof(char));	
 	int i, j; 
-	for( j = 0; j < n; j++)
+	for( j = 0; j < get_m( gabarito ); j++ )
 	{
-		for( i = 0; i < m; i++)
+		for( i = 0; i < get_n( gabarito ); i++)
 		{
-			data[j * m + i] = '*';
+			set_usr( &usr, j , i, '*' );	
 		}
 	}
 }
 
-void ColocarBombas(tabuleiro_t, //bombas//) //(int m, int n, char *data) 
+void CriarTabuleiroGabarito( tabuleiro_t gabarito )
+{
+	int i, j; 
+	for( j = 0; j < get_m( gabarito ); j++ )
+	{
+		for( i = 0; i < get_n( gabarito ); i++)
+		{
+			set_gabarito( &gabarito, j , i, '*' );	
+		}
+	}
+}
+
+void ColocarBombas( tabuleiro_t gabarito, q ) //q = get_q(gabarito) 
 {
 	int x, y;
 	srand(time(0));
 	
-	x = rand() % m;
-	y = rand() % n;
+	x = rand() % get_n( gabarito );
+	y = rand() % get_m( gabarito );
 	
 	if(data[y * m + x] == 'B')
 	{
