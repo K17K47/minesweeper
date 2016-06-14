@@ -1,3 +1,4 @@
+#include "ui.h"
 #include "dados.h"
 
 void imprimirTabuleiro(tabuleiro_t tab){
