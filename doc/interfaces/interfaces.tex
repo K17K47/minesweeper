@@ -1,0 +1,63 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\author{Lucas Lopes Costa}
+\title{Interfaces}
+\begin{document}
+T
+\chapter{Mech - Game Mechanics}
+T
+\chapter{UI - User Interface}
+T
+\chapter{Data - Data Structures}
+T
+\section{Estruturas}
+T
+\subsection{Tabuleiro}
+\begin{tabular}{| c | c | l |}
+\hline Nome da estrutura & \multicolumn{2}{c |}{tabuleiro\_t}\\
+\hline Nome do Campo & Tipo & Descrição\\
+\hline m & \textbf{\color{green}unsigned} & Número de linhas do tabuleiro \\
+n & \textbf{\color{green}unsigned} & Número de colunas do tabuleiro\\
+q & \textbf{\color{green}unsigned} & Número de minas semeadas\\
+usr & \textbf{\color{red}char*} & Vetor máscara do tabuleiro\\
+gabarito & \textbf{\color{red}char*} & Vetor \\
+\hline
+\end{tabular}
+
+\subsubsection{Métodos}
+T
+
+\subsection{Vetor}
+\begin{tabular}{| c | c | l |}
+\hline Nome da estrutura & \multicolumn{2}{c |}{vec}\\
+\hline Nome do Campo & Tipo & Descrição\\
+\hline x & \textbf{\color{green}unsigned} & Componente cartesiana em $x$\\
+y & \textbf{\color{green}unsigned} & Componente cartesiana em $y$\\
+\hline
+
+\end{tabular}
+
+\subsubsection{Métodos}
+{\bf Não há métodos para esta estrutura}
+
+\subsection{Jogada}
+\begin{tabular}{| c | c | l |}
+\hline Nome da estrutura & \multicolumn{2}{c |}{jogada\_t}\\
+\hline Nome do Campo & Tipo & Descrição\\
+\hline v & \textbf{\color{blue}vec} & Coordenada cartesiana do ponto da jogada\\
+opjogada & \textbf{\color{red}char} & Código da jogada\\
+\hline
+\end{tabular}
+
+\subsubsection{Métodos}
+\begin{itemize}
+\item \textbf{{\color{red}char} {\color{purple}get\_jogada}({\color{orange}jogada\_t} tab)} : Retorna o código da jogada armazenada em uma estrutura \textbf{\color{orange}jogada\_t}.
+\item \textbf{void {\color{purple}set\_jogada}({\color{orange}jogada\_t*} tab, {\color{red}char} op)} : Armazena um código de jogada em uma estrutura \textbf{\color{orange}jogada\_t}.
+\end{itemize}
+\end{document}

@@ -1,12 +1,12 @@
-#include "dados.h"
 #include "mech.h"
+#include "dados.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
 void CriarTabuleiroUsr( tabuleiro_t * usr )
 {
-	int i, j; 
+	int i, j;
 	vec v;
 	for( j = 0; j < get_m( *usr ); j++ )
 	{
@@ -14,14 +14,14 @@ void CriarTabuleiroUsr( tabuleiro_t * usr )
 		{
 			v.x = i;
 			v.y = j;
-			set_usr( usr, v, '*' );	
+			set_usr( usr, v, '*' );
 		}
 	}
 }
 
 void CriarTabuleiroGabarito( tabuleiro_t * gabarito )
 {
-	int i, j; 
+	int i, j;
 	vec v;
 	for( j = 0; j < get_m( *gabarito ); j++ )
 	{
@@ -29,23 +29,23 @@ void CriarTabuleiroGabarito( tabuleiro_t * gabarito )
 		{
 			v.x = i;
 			v.y = j;
-			set_gabarito( gabarito, v, '*' );	
+			set_gabarito( gabarito, v, '*' );
 		}
 	}
 }
 
-void ColocarBombas( tabuleiro_t * gabarito) //q = get_q( gabarito ) 
+void ColocarBombas( tabuleiro_t * gabarito) //q = get_q( gabarito )
 {
 	unsigned x, y;
-	
+
 	srand(time(0));
-	
+
 	x = rand() % get_n( *gabarito );
 	y = rand() % get_m( *gabarito );
-	
+
 	vec v;
 	v.x = x;
-	v.y = y;	
+	v.y = y;
 
 	if(get_gabarito( *gabarito, v ) == 'B')
 	{
@@ -99,7 +99,7 @@ void AvaliarVizinhos( tabuleiro_t * gabarito ) //(int m, int n, char *data)
 					{
 						b = b + 1;
 					}
-				}	
+				}
 			}
 			v.x = x;
 			v.y = y;
@@ -112,7 +112,7 @@ void AvaliarVizinhos( tabuleiro_t * gabarito ) //(int m, int n, char *data)
 void Revela(tabuleiro_t * gabarito, tabuleiro_t * usr, vec v) //v = get_coord( jogada )	//( int m, int n, int x, int y, char* info, char * cort )
 {
 	int i = -1, j = -1;
-	int x, y;	
+	int x, y;
 	if( get_gabarito( *gabarito, v ) != '0') //garante nulidade
 	{
 		return;
@@ -133,15 +133,15 @@ void Revela(tabuleiro_t * gabarito, tabuleiro_t * usr, vec v) //v = get_coord( j
 			}
 			else
 			{
-				set_usr( usr, v, get_gabarito( *gabarito, v ) )	;		
+				set_usr( usr, v, get_gabarito( *gabarito, v ) )	;
 				if( get_gabarito( *gabarito, v ) == '0' )
 				{
 					v.x = v.x + i;
 					v.y = v.y + j;
 					Revela( gabarito, gabarito, v);
-				}	
+				}
 			}
-		}	
+		}
 	}
 }
 
@@ -161,13 +161,22 @@ int ExecutaJogada(tabuleiro_t gabarito, tabuleiro_t * usr, jogada_t * jogada) //
 		if(get_gabarito( gabarito, v ) == 'B')
 		{
 			//perdeu jogo
+<<<<<<< HEAD
 			set_jogada( jogada, 'x');
 			return 0;	
+=======
+			*act = 'x';
+			return 0;
+>>>>>>> 160465bbd53b7dc5409b9ac314373d56fdc96e7d
 		}
 		if(get_gabarito( gabarito, v ) != '0')
 		{
+<<<<<<< HEAD
 			
 			set_usr( usr, v, get_gabarito( gabarito, v ) ); 
+=======
+			cort[(y * m) + x] = info[(y * m) + x];
+>>>>>>> 160465bbd53b7dc5409b9ac314373d56fdc96e7d
 			return 0;
 		}
 	}
