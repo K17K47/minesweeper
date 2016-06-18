@@ -161,22 +161,15 @@ int ExecutaJogada(tabuleiro_t gabarito, tabuleiro_t * usr, jogada_t * jogada) //
 		if(get_gabarito( gabarito, v ) == 'B')
 		{
 			//perdeu jogo
-<<<<<<< HEAD
 			set_jogada( jogada, 'x');
 			return 0;	
-=======
 			*act = 'x';
 			return 0;
->>>>>>> 160465bbd53b7dc5409b9ac314373d56fdc96e7d
 		}
 		if(get_gabarito( gabarito, v ) != '0')
 		{
-<<<<<<< HEAD
-			
 			set_usr( usr, v, get_gabarito( gabarito, v ) ); 
-=======
 			cort[(y * m) + x] = info[(y * m) + x];
->>>>>>> 160465bbd53b7dc5409b9ac314373d56fdc96e7d
 			return 0;
 		}
 	}
