@@ -6,7 +6,7 @@
 
 void CriarTabuleiroUsr( tabuleiro_t * usr )
 {
-	int i, j;
+	unsigned i, j;
 	vec v;
 	for( j = 0; j < get_m( *usr ); j++ )
 	{
@@ -17,7 +17,7 @@ void CriarTabuleiroUsr( tabuleiro_t * usr )
 			set_usr( usr, v, '*' );
 		}
 	}
-}
+} //ok
 
 void CriarTabuleiroGabarito( tabuleiro_t * gabarito )
 {
@@ -34,11 +34,11 @@ void CriarTabuleiroGabarito( tabuleiro_t * gabarito )
 	}
 }
 
-void ColocarBombas( tabuleiro_t * gabarito) //q = get_q( gabarito )
+void ColocarBombas( tabuleiro_t * gabarito ) //q = get_q( gabarito )
 {
 	unsigned x, y;
 
-	srand(time(0));
+	srand( time( 0 ) );
 
 	x = rand() % get_n( *gabarito );
 	y = rand() % get_m( *gabarito );
@@ -47,7 +47,7 @@ void ColocarBombas( tabuleiro_t * gabarito) //q = get_q( gabarito )
 	v.x = x;
 	v.y = y;
 
-	if(get_gabarito( *gabarito, v ) == 'B')
+	if( get_gabarito( *gabarito, v ) == 'B')
 	{
 		ColocarBombas( gabarito );
 	}
@@ -55,7 +55,7 @@ void ColocarBombas( tabuleiro_t * gabarito) //q = get_q( gabarito )
 	{
 		set_gabarito( gabarito, v, 'B' );
 	}
-}
+} //ok
 
 /*
 colocar na main
@@ -89,7 +89,7 @@ void AvaliarVizinhos( tabuleiro_t * gabarito ) //(int m, int n, char *data)
 					{
 						continue;
 					}
-					if( y + j < 0 || x + i < 0 || y + j >= get_m( *gabarito ) || x + i >= get_n( *gabarito )) //pula indevidos/inexistentes
+					if( y + j < 0 || x + i < 0 || y + j >= get_m( *gabarito ) || x + i >= get_n( *gabarito ) ) //pula indevidos/inexistentes
 					{
 						continue;
 					}
@@ -107,12 +107,14 @@ void AvaliarVizinhos( tabuleiro_t * gabarito ) //(int m, int n, char *data)
 			set_gabarito( gabarito, v, a );
 		}
 	}
-}
+} //ok
 
-void Revela(tabuleiro_t * gabarito, tabuleiro_t * usr, vec v) //v = get_coord( jogada )	//( int m, int n, int x, int y, char* info, char * cort )
+void Revela(tabuleiro_t * gabarito, tabuleiro_t * usr, vec v) //v = get_coord( jogada )
 {
 	int i = -1, j = -1;
 	int x, y;
+	x = (int) v.x;
+	y = (int) v.y;
 	if( get_gabarito( *gabarito, v ) != '0') //garante nulidade
 	{
 		return;
@@ -125,20 +127,20 @@ void Revela(tabuleiro_t * gabarito, tabuleiro_t * usr, vec v) //v = get_coord( j
 			{
 				continue;
 			}
-			v.x = v.x + i;
-			v.y = v.y + j;
+			v.x = x + i;
+			v.y = y + j;
 			if( get_usr( *usr, v ) ==  get_gabarito( *gabarito, v ) ) //pula já revelados
 			{
 				continue;
 			}
 			else
 			{
-				set_usr( usr, v, get_gabarito( *gabarito, v ) )	;
+				set_usr( usr, v, get_gabarito( *gabarito, v ) ); //revela realmente
 				if( get_gabarito( *gabarito, v ) == '0' )
 				{
-					v.x = v.x + i;
-					v.y = v.y + j;
-					Revela( gabarito, gabarito, v);
+					v.x = x + i;
+					v.y = y + j;
+					Revela( gabarito, usr, v);
 				}
 			}
 		}
