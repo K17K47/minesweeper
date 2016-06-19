@@ -153,42 +153,45 @@ if(jog.act == 'q' && tabuleiro de informações data.char[jog.y * info.m + jog.x] 
 	}
 */
 
-int ExecutaJogada(tabuleiro_t dados, tabuleiro_t cortina, jogada_t) //(int m, int n, char *cort, char *info, char *act, int x, int y)
+int ExecutaJogada(tabuleiro_t gabarito, tabuleiro_t * usr, jogada_t * jogada) //(int m, int n, char *cort, char *info, char *act, int x, int y)
 {
 	int i, j;
-	if(*act == 'q')
+	if(get_jogada( *jogada ) == 'q')
 	{
-		if(info[(y * m) + x] == 'B')
+		if(get_gabarito( gabarito, v ) == 'B')
 		{
 			//perdeu jogo
+			set_jogada( jogada, 'x');
+			return 0;	
 			*act = 'x';
 			return 0;
 		}
-		if(info[(y * m) + x] != '0')
+		if(get_gabarito( gabarito, v ) != '0')
 		{
+			set_usr( usr, v, get_gabarito( gabarito, v ) ); 
 			cort[(y * m) + x] = info[(y * m) + x];
 			return 0;
 		}
 	}
-	if(*act == 'f')
+	if(get_jogada( *jogada ) == 'f')
 	{
-		cort[y * m + x] = 'F';
-		if(info[y * m + x] == 'B')
+		set_usr( usr, v,'F');
+		if( get_gabarito( gabarito, v ) == 'B')
 		{
 			return 1;
 		}
 	}
-	if(*act == 'd')
+	if( get_jogada( *jogada ) == 'd')
 	{
-		cort[y*m+x] = '?';
+		set_usr( usr, v,'D');
 		return 0;
 	}
-	if(*act == 'z')
+	if(get_jogada( *jogada ) == 'z')
 	{
-		*act = 'r';
+		set_jogada( jogada, 'r' );
 		return 0;
 	}
-	if(*act == 'x')
+	if(get_jogada( *jogada ) == 'x')
 	{
 		return 0;
 	}
