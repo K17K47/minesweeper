@@ -19,21 +19,6 @@ void CriarTabuleiroUsr( tabuleiro_t * usr )
 	}
 } //ok
 
-void CriarTabuleiroGabarito( tabuleiro_t * gabarito )
-{
-	int i, j;
-	vec v;
-	for( j = 0; j < get_m( *gabarito ); j++ )
-	{
-		for( i = 0; i < get_n( *gabarito ); i++)
-		{
-			v.x = i;
-			v.y = j;
-			set_gabarito( gabarito, v, '*' );
-		}
-	}
-}
-
 void ColocarBombas( tabuleiro_t * gabarito ) //q = get_q( gabarito )
 {
 	unsigned x, y;
