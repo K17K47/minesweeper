@@ -140,37 +140,34 @@ if(jog.act == 'q' && tabuleiro de informações data.char[jog.y * info.m + jog.x] 
 	}
 */
 
-int ExecutaJogada(tabuleiro_t gabarito, tabuleiro_t * usr, jogada_t * jogada) //(int m, int n, char *cort, char *info, char *act, int x, int y)
+int ExecutaJogada( tabuleiro_t gabarito, tabuleiro_t * usr, jogada_t * jogada )
 {
 	int i, j;
-	if(get_jogada( *jogada ) == 'q')
+	if( get_jogada( *jogada ) == 'q' )
 	{
-		if(get_gabarito( gabarito, v ) == 'B')
+		if( get_gabarito( gabarito, get_coord( *jogada ) ) == 'B' )
 		{
 			//perdeu jogo
 			set_jogada( jogada, 'x');
 			return 0;	
-			*act = 'x';
-			return 0;
 		}
-		if(get_gabarito( gabarito, v ) != '0')
+		else( get_gabarito( gabarito, v ) != '0' )
 		{
-			set_usr( usr, v, get_gabarito( gabarito, v ) ); 
-			cort[(y * m) + x] = info[(y * m) + x];
+			set_usr( usr, get_coord( *jogada ), get_gabarito( gabarito, get_coord( *jogada ) ) ); 
 			return 0;
 		}
 	}
 	if(get_jogada( *jogada ) == 'f')
 	{
-		set_usr( usr, v,'F');
-		if( get_gabarito( gabarito, v ) == 'B')
+		set_usr( usr, get_coord( *jogada ),'F');
+		if( get_gabarito( gabarito, get_coord( *jogada ) ) == 'B')
 		{
 			return 1;
 		}
 	}
 	if( get_jogada( *jogada ) == 'd')
 	{
-		set_usr( usr, v,'D');
+		set_usr( usr, get_coord( *jogada ),'D');
 		return 0;
 	}
 	if(get_jogada( *jogada ) == 'z')
