@@ -157,25 +157,24 @@ int ExecutaJogada( tabuleiro_t gabarito, tabuleiro_t * usr, jogada_t * jogada )
 			return 0;
 		}
 	}
-	if(get_jogada( *jogada ) == 'f')
+	if( get_jogada( *jogada ) == 'f' )
 	{
-		set_usr( usr, get_coord( *jogada ),'F');
-		if( get_gabarito( gabarito, get_coord( *jogada ) ) == 'B')
+		set_usr( usr, get_coord( *jogada ),'F' );
+		if( get_gabarito( gabarito, get_coord( *jogada ) ) == 'B' )
 		{
 			return 1;
 		}
 	}
 	if( get_jogada( *jogada ) == 'd')
 	{
-		set_usr( usr, get_coord( *jogada ),'D');
+		set_usr( usr, get_coord( *jogada ),'D' );
 		return 0;
 	}
-	if(get_jogada( *jogada ) == 'z')
+	if( get_jogada( *jogada ) == 'r' )
 	{
-		set_jogada( jogada, 'r' );
 		return 0;
 	}
-	if(get_jogada( *jogada ) == 'x')
+	if( get_jogada( *jogada ) == 'x' )
 	{
 		return 0;
 	}
