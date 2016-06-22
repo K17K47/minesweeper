@@ -28,11 +28,14 @@ int main()
 				Revela( &gabarito, &usr, get_coord( jogada ) );
 			}
 			p = p + ExecutaJogada( gabarito, &usr, &jogada );
+			if( p = get_q( gabarito ) )//caso em que o jogador marcou todas as minas
+			{
+				set_jogada( &jog, 'x');//fim de jogo - vitória
+			}
 		}
 		//destruir tabuleiros
 
 	}while( get_jogada( jogada ) != 'x' );
-	
 
 	//imprimir pontuação
 	//e se ele quiser jogar novamente?
