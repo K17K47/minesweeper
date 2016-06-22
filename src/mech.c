@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-void CriarTabuleiroUsr( tabuleiro_t * usr )
+void CriarTabuleiroUsr( tabuleiro_t * usr, jogada_t * jog )
 {
 	unsigned i, j;
 	vec v;
@@ -17,9 +17,9 @@ void CriarTabuleiroUsr( tabuleiro_t * usr )
 			set_usr( usr, v, '*' );
 		}
 	}
-} //ok
+}
 
-void ColocarBombas( tabuleiro_t * gabarito ) //q = get_q( gabarito )
+void ColocarBombas( tabuleiro_t * gabarito )
 {
 	unsigned x, y;
 
@@ -40,17 +40,17 @@ void ColocarBombas( tabuleiro_t * gabarito ) //q = get_q( gabarito )
 	{
 		set_gabarito( gabarito, v, 'B' );
 	}
-} //ok
+}
 
 /*
-colocar na main
-for(i = 0; i < q; i++) //coloca bombas
+Na main
+for(i = 0; i < get_q( gabarito ); i++)
 		{
-			ColocarBombas(info.m, info.n, info.data);
-		}
+			ColocarBombas( &gabarito );
+		}		
 */
 
-void AvaliarVizinhos( tabuleiro_t * gabarito ) //(int m, int n, char *data)
+void AvaliarVizinhos( tabuleiro_t * gabarito )
 {
 	int x, y, i, j, b;
 	vec v;
@@ -92,7 +92,7 @@ void AvaliarVizinhos( tabuleiro_t * gabarito ) //(int m, int n, char *data)
 			set_gabarito( gabarito, v, a );
 		}
 	}
-} //ok
+}
 
 void Revela(tabuleiro_t * gabarito, tabuleiro_t * usr, vec v) //v = get_coord( jogada )
 {
@@ -133,21 +133,20 @@ void Revela(tabuleiro_t * gabarito, tabuleiro_t * usr, vec v) //v = get_coord( j
 }
 
 /*
-colocar na main
-if(jog.act == 'q' && tabuleiro de informações data.char[jog.y * info.m + jog.x] == '0')
-	{
-		Revela( info.m, info.n, jog.x, jog.y, info.data, cort.data );
-	}
+Na main
+if( ( get_jogada( jogada ) == 'v' ) && ( get_gabarito( gabarito, get_coord( jogada ) ) == '0' ) )
+{
+	Revela( &gabarito, &usr, get_coord( jogada ) );
+}
 */
 
 int ExecutaJogada( tabuleiro_t gabarito, tabuleiro_t * usr, jogada_t * jogada )
 {
 	int i, j;
-	if( get_jogada( *jogada ) == 'q' )
+	if( get_jogada( *jogada ) == 'v' )
 	{
-		if( get_gabarito( gabarito, get_coord( *jogada ) ) == 'B' )
+		if( get_gabarito( gabarito, get_coord( *jogada ) ) == 'B' )//perdeu jogo
 		{
-			//perdeu jogo
 			set_jogada( jogada, 'x');
 			return 0;	
 		}
@@ -157,9 +156,9 @@ int ExecutaJogada( tabuleiro_t gabarito, tabuleiro_t * usr, jogada_t * jogada )
 			return 0;
 		}
 	}
-	if( get_jogada( *jogada ) == 'f' )
+	if( get_jogada( *jogada ) == 'm' )
 	{
-		set_usr( usr, get_coord( *jogada ),'F' );
+		set_usr( usr, get_coord( *jogada ),'M' );
 		if( get_gabarito( gabarito, get_coord( *jogada ) ) == 'B' )
 		{
 			return 1;
