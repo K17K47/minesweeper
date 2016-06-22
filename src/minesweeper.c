@@ -13,7 +13,8 @@ int main()
 	do
 	{
 		//menu
-		//inicializar tabuleiros
+		inicializa_tab( &gabarito );
+		inicializa_tab( &usr );
 		for(i = 0; i < get_q( gabarito ); i++) //colocar bombas
 		{
 			ColocarBombas( &gabarito );
@@ -33,7 +34,8 @@ int main()
 				set_jogada( &jog, 'x');//fim de jogo - vitória
 			}
 		}
-		//destruir tabuleiros
+		destroi_tab( &gabarito );
+		destroi_tab( &usr );
 
 	}while( get_jogada( jogada ) != 'x' );
 
