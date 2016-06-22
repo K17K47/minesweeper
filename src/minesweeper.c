@@ -23,7 +23,7 @@ int main()
 		{
 			imprimirTabuleiro( usr );
 			Lerjogada( &jog , usr );
-			if( ( get_jogada( jogada ) == 'q' ) && ( get_gabarito( gabarito, get_coord( jogada ) ) == '0' ) )
+			if( ( get_jogada( jogada ) == 'v' ) && ( get_gabarito( gabarito, get_coord( jogada ) ) == '0' ) )
 			{
 				Revela( &gabarito, &usr, get_coord( jogada ) );
 			}
