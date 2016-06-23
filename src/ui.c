@@ -1,20 +1,78 @@
 #include "ui.h"
 #include "dados.h"
 
-void imprimirTabuleiro(tabuleiro_t tab){
-   int i, j;
-   vec v;
+void imprimiTabuleiro ( tabuleiro_t tab ) {
 
-   for( j = 0; j < get_n(tab)+ 1; j++) {
-      if(j) printf("\t%i",j);
-      v.x=j;
-      for( i = 0; i < get_m(tab); i++){
-         v.y=i;
-         if(j) printf("     \t/%c/", get_usr(tab,v)  );
-         if(!j) printf("\t\t%i",i+1);
-      }
-      printf("\n");
-   }
+   int i , j ;
+   vec v ;
+   
+	printf("     1");
+   
+   for(j = 2 ; j <= get_n(tab) ; j++)
+	{	if( j < 10 )
+      {
+			printf("   %d",j);
+		}
+		if( j > 9 )
+		{
+			printf("  %d",j);
+		}
+	}
+	printf("\n"); 
+
+	for ( i = 1 ; i <= get_m(tab)*2 + 1 ; i++ )
+   {  
+		if ( i%2 == 1 ) 
+      {
+			printf("   +");
+			for ( j = 1; j <= get_n(tab) ; j++) 
+         {
+				printf("---+");
+         }
+			printf("\n");
+		}
+      else {
+			if( i <= 18)
+			{
+				printf(" %d |",i/2) ;
+				for ( j = 1; j <= get_n(tab) ; j++ )
+				{
+					v.x = j - 1;
+					v.y = i/2 - 1; 
+					printf (" %c |",get_usr(tab,v)) ;        
+         	}
+        		printf(" %d\n", i/2);
+			}
+			else if( i <= 198 )
+			{
+				printf("%d |",i/2) ;
+				for ( j = 1; j <= get_n(tab) ; j++ )
+				{
+					v.x = j - 1;
+					v.y = i/2 - 1; 
+					printf (" %c |",get_usr(tab,v)) ;     
+         	}
+         	printf(" %d\n", i/2);	
+			} 		
+		}	    
+	}
+
+	printf("     1");
+   
+   for(j = 2 ; j <= get_n(tab) ; j++)
+	{	if( j < 10 )
+      {
+			printf("   %d",j);
+		}
+		if( j > 9 )
+		{
+			printf("  %d",j);
+		}
+	}
+	printf("\n"); 
+
+ 
+
 }
 
 
