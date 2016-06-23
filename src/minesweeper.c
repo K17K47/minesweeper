@@ -6,19 +6,20 @@ int main()
 {
 	tabuleiro_t tab;
 	jogada_t jog;
-	vec v;
 	int i, p = 0;
 	
 	do
 	{
-		//menu
+		opseguir( &tab, &i );
 		inicializa_tab( &tab );
-		CriarTabuleiroUsr( &tab )
+
+		CriarTabuleiroUsr( &tab );
 		for(i = 0; i < get_q( tab ); i++) //colocar bombas
 		{
 			ColocarBombas( &tab );
 		}		
 		AvaliarVizinhos( &tab );
+
 		while( get_jogada( jogada ) != 'x' && get_jogada( jogada ) != 'r' )
 		{
 			imprimirTabuleiro( tab );
@@ -33,11 +34,12 @@ int main()
 				set_jogada( &jog, 'x');//fim de jogo - vitória
 			}
 		}
+
+		fimDeJogo( p, tab, &jog );
 		destroi_tab( &tab );
+
 	}while( get_jogada( jogada ) != 'x' );
 
-	//imprimir pontuação
-	//e se ele quiser jogar novamente?
-
+	
 	return 0;
 }
