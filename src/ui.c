@@ -1,13 +1,14 @@
 #include "ui.h"
 #include "dados.h"
+#include <stdio.h>
 
-void imprimiTabuleiro ( tabuleiro_t tab ) {
+void imprimirTabuleiro ( tabuleiro_t tab ) {
 
    int i , j ;
    vec v ;
-   
+
 	printf("     1");
-   
+
    for(j = 2 ; j <= get_n(tab) ; j++)
 	{	if( j < 10 )
       {
@@ -18,14 +19,14 @@ void imprimiTabuleiro ( tabuleiro_t tab ) {
 			printf("  %d",j);
 		}
 	}
-	printf("\n"); 
+	printf("\n");
 
 	for ( i = 1 ; i <= get_m(tab)*2 + 1 ; i++ )
-   {  
-		if ( i%2 == 1 ) 
+   {
+		if ( i%2 == 1 )
       {
 			printf("   +");
-			for ( j = 1; j <= get_n(tab) ; j++) 
+			for ( j = 1; j <= get_n(tab) ; j++)
          {
 				printf("---+");
          }
@@ -38,8 +39,8 @@ void imprimiTabuleiro ( tabuleiro_t tab ) {
 				for ( j = 1; j <= get_n(tab) ; j++ )
 				{
 					v.x = j - 1;
-					v.y = i/2 - 1; 
-					printf (" %c |",get_usr(tab,v)) ;        
+					v.y = i/2 - 1;
+					printf (" %c |",get_usr(tab,v)) ;
          	}
         		printf(" %d\n", i/2);
 			}
@@ -49,16 +50,16 @@ void imprimiTabuleiro ( tabuleiro_t tab ) {
 				for ( j = 1; j <= get_n(tab) ; j++ )
 				{
 					v.x = j - 1;
-					v.y = i/2 - 1; 
-					printf (" %c |",get_usr(tab,v)) ;     
+					v.y = i/2 - 1;
+					printf (" %c |",get_usr(tab,v));
          	}
-         	printf(" %d\n", i/2);	
-			} 		
-		}	    
+         	printf(" %d\n", i/2);
+			}
+		}
 	}
 
 	printf("     1");
-   
+
    for(j = 2 ; j <= get_n(tab) ; j++)
 	{	if( j < 10 )
       {
@@ -69,52 +70,48 @@ void imprimiTabuleiro ( tabuleiro_t tab ) {
 			printf("  %d",j);
 		}
 	}
-	printf("\n"); 
-
- 
-
+	printf("\n");
 }
 
 
 
-void Lerjogada ( jogada_t*jog , tabuleiro_t tab ) {
+void lerJogada ( jogada_t* jog , tabuleiro_t tab ) {
 
- unsigned x , y ;
- char op ;
+   unsigned x , y ;
+   char op ;
 
- printf(" Digite a coordenada e a opcao de jogada " );
- scanf("%u%u",&x,&y);
- op=getchar();
+   printf(" Digite a coordenada e a opcao de jogada " );
+   scanf("%u%u",&x,&y);
+   op=getchar();
    while( getchar() != ’\n’ );
- 
 
- if( ( !(x <= get_n(tab) || !(y <= get_m(tab) ) && ( !(op == 'v') || !(op == 'm') || !( op == 'd' )  ) ) {
+   if(( !(x <= get_n(tab) || !(y <= get_m(tab) ) &&
+      ( !(op == 'v') || !(op == 'm') || !( op == 'd' ))) {
 
-    printf(" Erro na coordenada e na opcao de jogada. Digite novamente ") ;
-    scanf("%u%u",&x,&y);
-    op=getchar();
-     while( getchar() != ’\n’ );
+      printf(" Erro na coordenada e na opcao de jogada. Digite novamente ") ;
+      scanf("%u%u",&x,&y);
+      op=getchar();
+      while( getchar() != ’\n’ );
 
-}
-  while ( !(x <= get_n(tab) || !(y <= get_m(tab)  ){
+   }
+
+   while ( !(x <= get_n(tab) || !(y <= get_m(tab)  ){
 
       printf(" Erro na coordenada . digite novamente " );
       scanf("%u%u",&x,&y);
-        while( getchar() != ’\n’ );
-     
-}
-  while ( !(op == v) || !(op == 'm') || !( op == 'd' ) ) {
-       
-      printf(" Erro na opao de jogo . digite novamente " );
-      
-      op=getchar();
-        while( getchar() != ’\n’ );
-}
+      while( getchar() != ’\n’ );
 
-  set_coord ( jog , x,  y);
-  set_jogada( jog , op);
-      
-   
+   }
+   while ( !(op == v) || !(op == 'm') || !( op == 'd' ) ) {
+
+      printf(" Erro na opao de jogo . digite novamente " );
+
+      op=getchar();
+      while( getchar() != ’\n’ );
+   }
+
+   set_coord ( jog , x,  y);
+   set_jogada( jog , op);
 }
 
 
