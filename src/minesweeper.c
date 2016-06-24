@@ -6,7 +6,7 @@ int main()
 {
 	tabuleiro_t tab;
 	jogada_t jog;
-	int i, p = 0;
+	int i, p;
 
 	do
 	{
@@ -23,6 +23,8 @@ int main()
 		
 		AvaliarVizinhos( &tab );
 
+		p = 0;
+
 		while( !( get_jogada( jog ) == 'x' || get_jogada( jog ) == 'r' ) )
 		{
 			imprimirTabuleiro( tab );
@@ -31,7 +33,7 @@ int main()
 			{
 				Revela( &tab, get_coord( jog ) );
 			}
-			p = p + ExecutaJogada( &tab, &jog );
+			ExecutaJogada( &tab, &jog, &p );
 			if( p == get_q( tab ) ) //caso em que o jogador marcou todas as minas
 			{
 				set_jogada( &jog, 'r'); //fim de jogo - vitória, 'r' permite que ele jogue novamente
