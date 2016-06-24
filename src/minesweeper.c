@@ -7,7 +7,7 @@ int main()
 	tabuleiro_t tab;
 	jogada_t jog;
 	int i, p = 0;
-	
+
 	do
 	{
 		opseguir( &tab, &i );
@@ -17,13 +17,13 @@ int main()
 		for(i = 0; i < get_q( tab ); i++) //colocar bombas
 		{
 			ColocarBombas( &tab );
-		}		
+		}
 		AvaliarVizinhos( &tab );
 
 		while( get_jogada( jog ) != 'x' && get_jogada( jog ) != 'r' )
 		{
 			imprimirTabuleiro( tab );
-			Lerjogada( &jog , tab );
+			lerJogada( &jog , tab );
 			if( ( get_jogada( jog ) == 'v' ) && ( get_gabarito( tab, get_coord( jog ) ) == '0' ) )
 			{
 				Revela( &tab, get_coord( jog ) );
@@ -40,6 +40,5 @@ int main()
 
 	}while( get_jogada( jog ) != 'x' );
 
-	
 	return 0;
 }
