@@ -121,6 +121,7 @@ int menu () {
    printf(" Digite 1 ou 2 , numero da opção que voce gostaria de seguir : \n " ) ;
    printf("\t 1.Iniciar o jogo \n \t 2.Sair do jogo \n" ) ;
    scanf("%d", &op) ;
+   while ( getchar() != '\n' ) ;
 
    return op ;
 }
