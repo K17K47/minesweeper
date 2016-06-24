@@ -147,7 +147,7 @@ void ExecutaJogada( tabuleiro_t * tab, jogada_t * jogada, int * p )
 	{
 		if( get_gabarito( *tab, get_coord( *jogada ) ) == 'B' )//perdeu jogo
 		{
-			set_jogada( jogada, 'x');
+			set_jogada( jogada, 'r');
 			return;
 		}
 		else if( get_gabarito( *tab, get_coord( *jogada ) ) != '0' )
@@ -174,7 +174,7 @@ void ExecutaJogada( tabuleiro_t * tab, jogada_t * jogada, int * p )
 	{
 		return;
 	}
-	if( get_jogada( *jogada ) == 'x' )
+	if( get_jogada( *jogada ) == 's' )
 	{
 		return;
 	}

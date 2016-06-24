@@ -25,7 +25,7 @@ int main()
 
 		p = 0;
 
-		while( !( get_jogada( jog ) == 'x' || get_jogada( jog ) == 'r' ) )
+		while( !( get_jogada( jog ) == 's' || get_jogada( jog ) == 'r' ) )
 		{
 			imprimirTabuleiro( tab );
 			lerJogada( &jog , tab );
@@ -43,7 +43,7 @@ int main()
 		fimDeJogo( p, tab, &jog );
 		destroi_tab( &tab );
 
-	}while( get_jogada( jog ) != 'x' );
+	}while( get_jogada( jog ) != 's' );
 
 	return 0;
 }
