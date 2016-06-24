@@ -151,7 +151,7 @@ void opseguir ( tabuleiro_t*p , int *i) {
    }
 }
 
-void fimDeJogo( int i , tabuleiro_t tab , jogada _t *p ) {
+void fimDeJogo( int i , tabuleiro_t tab , jogada_t *p ) {
 
    char c ;
 
