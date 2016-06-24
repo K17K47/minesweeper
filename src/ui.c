@@ -125,7 +125,7 @@ int menu () {
    return op ;
 }
 
-void opseguir ( tabuleiro_t*p , int *i) {
+void opseguir ( tabuleiro_t* p , int *i) {
      unsigned m , n , q ;
      int op ;
      op = menu();
@@ -146,7 +146,7 @@ void opseguir ( tabuleiro_t*p , int *i) {
    }else{
 
       printf("Erro de opcao , tente novamente ." ) ;
-      seguir( p , i) ;
+      opseguir( p , i) ;
       while ( getchar() != '\n' ) ;
    }
 }
