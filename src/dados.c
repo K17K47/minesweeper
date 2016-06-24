@@ -1,4 +1,5 @@
 #include "dados.h"
+#include <stdlib.h>
 
 unsigned get_m(tabuleiro_t tab)
 {
