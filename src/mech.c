@@ -141,19 +141,19 @@ if( ( get_jogada( jogada ) == 'v' ) && ( get_gabarito( gabarito, get_coord( joga
 }
 */
 
-int ExecutaJogada( tabuleiro_t * tab, jogada_t * jogada )
+void ExecutaJogada( tabuleiro_t * tab, jogada_t * jogada, int * p )
 {
 	if( get_jogada( *jogada ) == 'v' )
 	{
 		if( get_gabarito( *tab, get_coord( *jogada ) ) == 'B' )//perdeu jogo
 		{
 			set_jogada( jogada, 'x');
-			return 0;
+			return;
 		}
 		else if( get_gabarito( *tab, get_coord( *jogada ) ) != '0' )
 		{
 			set_usr( tab, get_coord( *jogada ), get_gabarito( *tab, get_coord( *jogada ) ) );
-			return 0;
+			return;
 		}
 	}
 	if( get_jogada( *jogada ) == 'm' )
@@ -161,21 +161,22 @@ int ExecutaJogada( tabuleiro_t * tab, jogada_t * jogada )
 		set_usr( tab, get_coord( *jogada ),'M' );
 		if( get_gabarito( *tab, get_coord( *jogada ) ) == 'B' )
 		{
-			return 1;
+			*p = *p + 1;
+			return;
 		}
 	}
 	if( get_jogada( *jogada ) == 'd')
 	{
 		set_usr( tab, get_coord( *jogada ),'D' );
-		return 0;
+		return;
 	}
 	if( get_jogada( *jogada ) == 'r' )
 	{
-		return 0;
+		return;
 	}
 	if( get_jogada( *jogada ) == 'x' )
 	{
-		return 0;
+		return;
 	}
 }
 
