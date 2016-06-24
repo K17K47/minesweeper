@@ -53,12 +53,12 @@ void set_gabarito(tabuleiro_t* tab, vec v, char gabarito)
 
 void inicializa_tab(tabuleiro_t* tab)
 {
-	tab->usr = malloc (m*n);
-	tab->gabarito = malloc (m*n);
+	tab->usr = malloc (tab->m*tab->n);
+	tab->gabarito = malloc (tab->m*tab->n);
 }
 void destroi_tab(tabuleiro_t* tab)
 {
-	free(tab->user);
+	free(tab->usr);
 	free(tab->gabarito);
 }
 
@@ -67,7 +67,7 @@ char get_jogada(jogada_t jogada)
 	return jogada.opjogada;
 }
 
-void set_jogada(jogada_t* jogada, char op);	//op = opção
+void set_jogada(jogada_t* jogada, char op)	//op = opção
 {
 	jogada->opjogada=op;
 }
