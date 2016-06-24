@@ -19,11 +19,11 @@ int main()
 		inicializa_tab( &tab );
 
 		CriarTabuleiroUsr( &tab );
-		ColocarBombas( &tab );
-		
+		ColocarBombas( &tab );		
 		AvaliarVizinhos( &tab );
 
 		p = 0;
+		set_jogada( &jog, 'd');
 
 		while( !( get_jogada( jog ) == 's' || get_jogada( jog ) == 'r' ) )
 		{
