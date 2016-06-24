@@ -15,6 +15,6 @@ void CriarTabuleiroUsr( tabuleiro_t * usr );
 void ColocarBombas( tabuleiro_t * gabarito );
 void AvaliarVizinhos( tabuleiro_t * gabarito );
 void Revela( tabuleiro_t * gabarito, vec v  );
-int ExecutaJogada( tabuleiro_t* gabarito, jogada_t * jogada );
+void ExecutaJogada( tabuleiro_t* gabarito, jogada_t * jogada, int * p );
 
 #endif
