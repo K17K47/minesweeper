@@ -21,7 +21,7 @@ void CriarTabuleiroUsr( tabuleiro_t * tab )
 
 void ColocarBombas( tabuleiro_t * tab )
 {
-	srand( time( 0 ) );
+	srand( (unsigned)time( NULL ) );
 	
 	int i = 0;
 	vec v;
@@ -38,6 +38,7 @@ void ColocarBombas( tabuleiro_t * tab )
 		}
 
 		set_gabarito( tab, v, 'B' );
+		i = i + 1; 
 		
 	}while( i < get_q( *tab ) );
 }
