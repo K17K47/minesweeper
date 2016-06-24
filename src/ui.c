@@ -80,12 +80,15 @@ void imprimirTabuleiro ( tabuleiro_t tab ) {
 void lerJogada ( jogada_t* jog , tabuleiro_t tab ) {
 
    unsigned x , y ;
-   char op,tmp ;
+   char op;
 
-   /*do{
+   /*
+   char tmp ;
+
+   do{
       printf(" Digite a coordenada e a opção de jogada (Ex.: 5 5 v) :");
       while((tmp=getchar())!=EOF && tmp!='\n');
-      tmp = scanf("%u%u%c",&x,&y,&op);
+      tmp = scanf("%u%u %c",&x,&y,&op);
       if(tmp != 3 || !(x>0 && x<=get_n(tab)) || !(y>0 && y<=get_m(tab))){
          printf("Jogada inválida!");
          tmp = 0;
@@ -93,6 +96,9 @@ void lerJogada ( jogada_t* jog , tabuleiro_t tab ) {
       x--;
       y--;
    }while((tmp != 3) && !( op == 'v' || op == 'm' || op == 'd'));
+
+   set_coord ( jog , x,  y);
+   set_jogada( jog , op);
    */
 
    printf(" Digite a coordenada e a opção de jogada : " );
