@@ -157,7 +157,7 @@ void fimDeJogo( int i , tabuleiro_t tab , jogada_t *p ) {
 
    printf ("Fim de jogo \n Resultados : \n" ) ;
    if( i == get_q( tab ) ){
-      printf(" Parabéns ! Você Venceu ! Marcou todas as bomba ! \n " ) ;
+      printf(" Parabéns ! Você Venceu ! Marcou todas as bombas ! \n " ) ;
 
    } else {
       printf(" Você perdeu ! Você marcou %d de %u bombas  \n", i , get_q(tab) ) ;
