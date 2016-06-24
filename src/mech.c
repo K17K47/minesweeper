@@ -147,11 +147,11 @@ int ExecutaJogada( tabuleiro_t * tab, jogada_t * jogada )
 		if( get_gabarito( *tab, get_coord( *jogada ) ) == 'B' )//perdeu jogo
 		{
 			set_jogada( jogada, 'x');
-			return 0;	
+			return 0;
 		}
-		else( get_gabarito( *tab, get_coord( *jogada ) ) != '0' )
+		else if( get_gabarito( *tab, get_coord( *jogada ) ) != '0' )
 		{
-			set_usr( tab, get_coord( *jogada ), get_gabarito( *tab, get_coord( *jogada ) ) ); 
+			set_usr( tab, get_coord( *jogada ), get_gabarito( *tab, get_coord( *jogada ) ) );
 			return 0;
 		}
 	}
