@@ -132,7 +132,7 @@ void opseguir ( tabuleiro_t* p , int *i) {
 
    if( op == 1 ){
       printf("Para iniciar o jogo e preciso digitar o tamanho do tabuleiro ( m X n) e o numero de bombas " );
-      scanf("%u%u%u ",&m,&n,&q) ;
+      scanf("%u%u%u",&m,&n,&q) ;
       set_m(p,m);
       set_n(p,n);
       set_q(p,q);
