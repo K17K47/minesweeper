@@ -21,25 +21,25 @@ void CriarTabuleiroUsr( tabuleiro_t * tab )
 
 void ColocarBombas( tabuleiro_t * tab )
 {
-	unsigned x, y;
-
 	srand( time( 0 ) );
-
-	x = rand() % get_n( *tab );
-	y = rand() % get_m( *tab );
-
+	
+	int i = 0;
 	vec v;
-	v.x = x;
-	v.y = y;
+	
+	do
+	{
+		v.x = rand() % get_n( *tab );
+		v.y = rand() % get_m( *tab );
 
-	if( get_gabarito( *tab, v ) == 'B')
-	{
-		ColocarBombas( tab );
-	}
-	else
-	{
+		while( get_gabarito( *tab, v ) == 'B')
+		{
+			v.x = rand() % get_n( *tab );
+			v.y = rand() % get_m( *tab );
+		}
+
 		set_gabarito( tab, v, 'B' );
-	}
+		
+	}while( i < get_q( *tab ) );
 }
 
 /*
