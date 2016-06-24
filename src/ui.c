@@ -120,7 +120,7 @@ int menu () {
    printf(" As opcoes de jogada são : 'v' para marcar a casa como vazia \n \t\t\t   'm' para marcar como minada \n \t\t\t   'd' para marcar como dúvida \n \n ") ;
    printf(" Digite 1 ou 2 , numero da opção que voce gostaria de seguir : \n " ) ;
    printf("\t 1.Iniciar o jogo \n \t 2.Sair do jogo \n" ) ;
-   scanf(" %d ", &op) ;
+   scanf("%d", &op) ;
 
    return op ;
 }
