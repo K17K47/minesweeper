@@ -167,7 +167,7 @@ void fimDeJogo( int i , tabuleiro_t tab , jogada_t *p ) {
 
    printf("Para recomeçar digite 'R' ou digite 'S' para sair \n " ) ;
    printf("R.Recomeçar \n S.Sair \n " ) ;
-   scanf("%d",&c) ;
+   scanf("%c",&c) ;
    set_jogada(p,c) ;
 
 }
