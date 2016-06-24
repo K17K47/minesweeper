@@ -9,6 +9,7 @@
 #ifndef MECH_H_
 #define MECH_H_
 
+#include "dados.h"
 //Protótipos
 
 void CriarTabuleiroUsr( tabuleiro_t * usr );
