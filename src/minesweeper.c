@@ -11,6 +11,11 @@ int main()
 	do
 	{
 		opseguir( &tab, &i );
+		if( i == 0 )
+		{
+			break; //opção de sair do jogo
+		}
+
 		inicializa_tab( &tab );
 
 		CriarTabuleiroUsr( &tab );
@@ -29,9 +34,9 @@ int main()
 				Revela( &tab, get_coord( jog ) );
 			}
 			p = p + ExecutaJogada( &tab, &jog );
-			if( p = get_q( tab ) )//caso em que o jogador marcou todas as minas
+			if( p = get_q( tab ) ) //caso em que o jogador marcou todas as minas
 			{
-				set_jogada( &jog, 'x');//fim de jogo - vitória
+				set_jogada( &jog, 'r'); //fim de jogo - vitória, 'r' permite que ele jogue novamente
 			}
 		}
 
