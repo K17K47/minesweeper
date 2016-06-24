@@ -142,7 +142,6 @@ if( ( get_jogada( jogada ) == 'v' ) && ( get_gabarito( gabarito, get_coord( joga
 
 int ExecutaJogada( tabuleiro_t * tab, jogada_t * jogada )
 {
-	int i, j;
 	if( get_jogada( *jogada ) == 'v' )
 	{
 		if( get_gabarito( *tab, get_coord( *jogada ) ) == 'B' )//perdeu jogo
@@ -150,7 +149,7 @@ int ExecutaJogada( tabuleiro_t * tab, jogada_t * jogada )
 			set_jogada( jogada, 'x');
 			return 0;	
 		}
-		else( get_gabarito( *tab, v ) != '0' )
+		else( get_gabarito( *tab, get_coord( *jogada ) ) != '0' )
 		{
 			set_usr( tab, get_coord( *jogada ), get_gabarito( *tab, get_coord( *jogada ) ) ); 
 			return 0;
