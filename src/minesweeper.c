@@ -20,15 +20,15 @@ int main()
 		}		
 		AvaliarVizinhos( &tab );
 
-		while( get_jogada( jogada ) != 'x' && get_jogada( jogada ) != 'r' )
+		while( get_jogada( jog ) != 'x' && get_jogada( jog ) != 'r' )
 		{
 			imprimirTabuleiro( tab );
 			Lerjogada( &jog , tab );
-			if( ( get_jogada( jogada ) == 'v' ) && ( get_gabarito( tab, get_coord( jogada ) ) == '0' ) )
+			if( ( get_jogada( jog ) == 'v' ) && ( get_gabarito( tab, get_coord( jog ) ) == '0' ) )
 			{
-				Revela( &tab, get_coord( jogada ) );
+				Revela( &tab, get_coord( jog ) );
 			}
-			p = p + ExecutaJogada( &tab, &jogada );
+			p = p + ExecutaJogada( &tab, &jog );
 			if( p = get_q( tab ) )//caso em que o jogador marcou todas as minas
 			{
 				set_jogada( &jog, 'x');//fim de jogo - vitória
@@ -38,7 +38,7 @@ int main()
 		fimDeJogo( p, tab, &jog );
 		destroi_tab( &tab );
 
-	}while( get_jogada( jogada ) != 'x' );
+	}while( get_jogada( jog ) != 'x' );
 
 	
 	return 0;
