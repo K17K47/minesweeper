@@ -76,7 +76,7 @@ vec get_coord (jogada_t jogada)
 	return jogada.vec;
 }
 
-void set_coord (jogada_t jogada, unsigned x, unsigned y)
+void set_coord (jogada_t* jogada, unsigned x, unsigned y)
 {
 	jogada->v->x=x;
 	jogada->v->y=y;

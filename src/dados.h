@@ -47,7 +47,7 @@ void destroi_tab(tabuleiro_t* tab);
 char get_jogada(jogada_t tab);
 void set_jogada(jogada_t* tab, char op);	//op = opção da jogada
 vec get_coord (jogada_t jogada);
-void set_coord (jogada_t jogada, unsigned x, unsigned y);
+void set_coord (jogada_t* jogada, unsigned x, unsigned y);
 
 #endif
 
