@@ -26,7 +26,7 @@ typedef struct {
 
 typedef struct {
    vec v;
-   char opjogada
+   char opjogada;
 } jogada_t;
 
 unsigned get_m(tabuleiro_t tab);
