@@ -80,7 +80,7 @@ void lerJogada ( jogada_t* jog , tabuleiro_t tab ) {
    unsigned x , y ;
    char op ;
 
-   printf(" Digite a coordenada e a opcao de jogada " );
+   printf(" Digite a coordenada e a opção de jogada : " );
    scanf("%u%u",&x,&y);
    op=getchar();
    while( getchar() != '\n' );
@@ -88,7 +88,7 @@ void lerJogada ( jogada_t* jog , tabuleiro_t tab ) {
    if(( !(x <= get_n(tab) ) || !(y <= get_m(tab) ) ) &&
       ( !(op == 'v') || !(op == 'm') || !( op == 'd' ))) {
 
-      printf(" Erro na coordenada e na opcao de jogada. Digite novamente ") ;
+      printf(" Erro na coordenada e na opção de jogada.Digite novamente : ") ;
       scanf("%u%u",&x,&y);
       op=getchar();
       while( getchar() != '\n' );
@@ -97,14 +97,14 @@ void lerJogada ( jogada_t* jog , tabuleiro_t tab ) {
 
    while ( !(x <= get_n(tab)) || !(y <= get_m(tab)) ){
 
-      printf(" Erro na coordenada . digite novamente " );
+      printf(" Erro na coordenada.Digite novamente : " );
       scanf("%u%u",&x,&y);
       while( getchar() != '\n' );
 
    }
    while ( !(op == 'v') || !(op == 'm') || !( op == 'd' ) ) {
 
-      printf(" Erro na opao de jogo . digite novamente " );
+      printf(" Erro na opção de jogo.Digite novamente : " );
 
       op=getchar();
       while( getchar() != '\n' );
@@ -117,7 +117,7 @@ void lerJogada ( jogada_t* jog , tabuleiro_t tab ) {
 int menu () {
    int op ;
    printf("\t\t\t Bem-Vindo ao Campo Minado \n\n Para efetuar uma jogada será necessario digitar \n uma coordenada ( x , y ) e uma opção de jogada ( Caracter ) \n \n" );
-   printf(" As opcoes de jogada sao : 'v' para marcar a casa como vazia \n \t\t\t   'm' para marcar como minada \n \t\t\t   'd' para marcar como dúvida \n \n ") ;
+   printf(" As opcoes de jogada são : 'v' para marcar a casa como vazia \n \t\t\t   'm' para marcar como minada \n \t\t\t   'd' para marcar como dúvida \n \n ") ;
    printf(" Digite 1 ou 2 , numero da opção que voce gostaria de seguir : \n " ) ;
    printf("\t 1.Iniciar o jogo \n \t 2.Sair do jogo \n" ) ;
    scanf(" %d ", &op) ;
@@ -131,7 +131,7 @@ void opseguir ( tabuleiro_t* p , int *i) {
      op = menu();
 
    if( op == 1 ){
-      printf("Para iniciar o jogo e preciso digitar o tamanho do tabuleiro ( m X n) e o numero de bombas " );
+      printf("Para iniciar o jogo é preciso digitar o tamanho do tabuleiro ( m X n ) e o numero de bombas " );
       scanf("%u%u%u",&m,&n,&q) ;
       set_m(p,m);
       set_n(p,n);
@@ -145,7 +145,7 @@ void opseguir ( tabuleiro_t* p , int *i) {
       return;
    }else{
 
-      printf("Erro de opcao , tente novamente ." ) ;
+      printf("Erro de opção.Tente novamente :" ) ;
       opseguir( p , i) ;
       while ( getchar() != '\n' ) ;
    }
@@ -157,7 +157,7 @@ void fimDeJogo( int i , tabuleiro_t tab , jogada_t *p ) {
 
    printf ("Fim de jogo \n Resultados : \n" ) ;
    if( i == get_q( tab ) ){
-      printf(" Parabéns ! Você Venceu \n " ) ;
+      printf(" Parabéns ! Você Venceu ! Marcou todas as bomba ! \n " ) ;
 
    } else {
       printf(" Você perdeu ! Você marcou %d de %u bombas  \n", i , get_q(tab) ) ;
