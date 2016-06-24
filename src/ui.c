@@ -97,14 +97,19 @@ void lerJogada ( jogada_t* jog , tabuleiro_t tab ) {
 
    printf(" Digite a coordenada e a opção de jogada : " );
    scanf("%u%u",&x,&y);
+   while( getchar() != '\n' );
    op=getchar();
    while( getchar() != '\n' );
+   x = x - 1 ;
+   y = y - 1 ;
 
    if(( !(x <= get_n(tab) ) || !(y <= get_m(tab) ) ) &&
       ( !(op == 'v') || !(op == 'm') || !( op == 'd' ))) {
 
       printf(" Erro na coordenada e na opção de jogada.Digite novamente : ") ;
       scanf("%u%u",&x,&y);
+      
+      while( getchar() != '\n' );
       op=getchar();
       while( getchar() != '\n' );
 
@@ -117,7 +122,7 @@ void lerJogada ( jogada_t* jog , tabuleiro_t tab ) {
       while( getchar() != '\n' );
 
    }
-   while ( !(op == 'v') || !(op == 'm') || !( op == 'd' ) ) {
+   while ( !( op == 'v' || op == 'd' || op == 'm' ) ) {
 
       printf(" Erro na opção de jogo.Digite novamente : " );
 
