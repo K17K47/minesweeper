@@ -74,13 +74,13 @@ void set_jogada(jogada_t* jogada, char op)	//op = opção
 
 vec get_coord (jogada_t jogada)
 {
-	return jogada.vec;
+	return jogada.v;
 }
 
 void set_coord (jogada_t* jogada, unsigned x, unsigned y)
 {
-	jogada->v->x=x;
-	jogada->v->y=y;
+	jogada->v.x=x;
+	jogada->v.y=y;
 }
 
 
