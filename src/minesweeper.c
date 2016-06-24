@@ -19,10 +19,8 @@ int main()
 		inicializa_tab( &tab );
 
 		CriarTabuleiroUsr( &tab );
-		for(i = 0; i < get_q( tab ); i++) //colocar bombas
-		{
-			ColocarBombas( &tab );
-		}
+		ColocarBombas( &tab );
+		
 		AvaliarVizinhos( &tab );
 
 		while( get_jogada( jog ) != 'x' && get_jogada( jog ) != 'r' )
