@@ -179,7 +179,3 @@ void ExecutaJogada( tabuleiro_t * tab, jogada_t * jogada, int * p )
 		return;
 	}
 }
-
-/*
-Retornar esse valor para um contador(?)
-*/
