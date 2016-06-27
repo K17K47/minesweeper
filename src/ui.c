@@ -97,7 +97,7 @@ void lerJogada ( jogada_t* jog , tabuleiro_t tab ) {
       }
       x--;
       y--;
-   }while((tmp != 3) && !( op == 'v' || op == 'm' || op == 'd' || op == 'r' || op== 's'));
+   }while((tmp != 3) || !( op == 'v' || op == 'm' || op == 'd' || op == 'r' || op== 's'));
 
    set_coord ( jog , x,  y);
    set_jogada( jog , op);
