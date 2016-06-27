@@ -8,7 +8,7 @@ void imprimirTabuleiro ( tabuleiro_t tab ) {
    int i , j ;
    vec v ;
 
-	printf("     1");
+	printf("     1"); // Da linha 11 a 24 do código, imprimo a primeira linha númerica (linha coordenadas) 
 
    for(j = 2 ; j <= get_n(tab) ; j++)
 	{
@@ -75,6 +75,7 @@ void imprimirTabuleiro ( tabuleiro_t tab ) {
 	}
 	printf("\n");
 }
+   
 
 
 
@@ -87,9 +88,9 @@ void lerJogada ( jogada_t* jog , tabuleiro_t tab ) {
    char tmp ;
 
    do{
-      printf(" Digite a coordenada e a opção de jogada (Exemplo : 5 5 v) :");
-      while((tmp=getchar())!=EOF && tmp!='\n');
-      tmp = scanf("%u%u %c",&x,&y,&op);
+      printf("Digite a coordenada e a opção de jogada (Exemplo : 5 5 v) \n Caso queria reniciar digite( 1 1 r) \n Caso queria sair digite (1 1 s)\n");
+      __fpurge(stdin);
+      tmp = scanf("%u%u %c",&x,&y,&op);                                        
       if(tmp != 3 || !(x>0 && x<=get_n(tab)) || !(y>0 && y<=get_m(tab))){
          printf("Jogada inválida!\n");
          tmp = 0;
@@ -145,11 +146,11 @@ int menu () {
    int op ;
    char tmp ;
    printf("\t\t\t Bem-Vindo ao Campo Minado \n\n Para efetuar uma jogada será necessario digitar \n uma coordenada ( x , y ) e uma opção de jogada ( Caracter ) \n \n" );
-   printf(" As opcoes de jogada são : 'v' para marcar a casa como vazia \n \t\t\t   'm' para marcar como minada \n \t\t\t   'd' para marcar como dúvida \n \n ") ;
-   printf(" Digite 1 ou 2 , numero da opção que voce gostaria de seguir : \n " ) ;
+   printf("As opcoes de jogada são : 'v' para marcar a casa como vazia \n \t\t\t   'm' para marcar como minada \n \t\t\t   'd' para marcar como dúvida \n \n ") ;
+   printf("Digite 1 ou 2 , numero da opção que voce gostaria de seguir : \n " ) ;
    printf("\t 1.Iniciar o jogo \n \t 2.Sair do jogo \n" ) ;
    tmp = scanf("%d", &op) ;
-   while((tmp=getchar())!=EOF && tmp!='\n');
+   __fpurge(stdin);
 
    return op ;
 }
@@ -162,7 +163,7 @@ void opseguir ( tabuleiro_t* p , int *i) {
 
    if( op == 1 ){
       do{
-      	printf(" Para iniciar o jogo é preciso digitar o tamanho do tabuleiro ( linhas X colunas ) e o número de bombas (Exemplo : 10 10 2 ) :");
+      	printf("Para iniciar o jogo é preciso digitar o tamanho do tabuleiro ( linhas X colunas ) e o número de bombas (Exemplo : 10 10 2 ) :");
       	//while((tmp=getchar())!=EOF && tmp!='\n');
 			__fpurge(stdin);      	
 			tmp = scanf("%u%u%u",&m,&n,&q);
@@ -187,13 +188,13 @@ void opseguir ( tabuleiro_t* p , int *i) {
 
       printf("Erro de opção.Tente novamente :" ) ;
       opseguir( p , i) ;
-      while((tmp=getchar())!=EOF && tmp!='\n');
+     __fpurge(stdin);
    }
 }
 
 void fimDeJogo( int i , tabuleiro_t tab  ) {
 
-   printf (" Fim de jogo \n Resultados : \n" ) ;
+   printf (" Fim de jogo \n Resultado: \n" ) ;
    if( i == get_q( tab ) ){
       printf(" Parabéns ! Você Venceu ! Marcou todas as bombas  \n\n " ) ;
 
