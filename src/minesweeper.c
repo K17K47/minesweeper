@@ -40,7 +40,7 @@ int main()
 			}
 		}
 
-		fimDeJogo( p, tab, &jog );
+		fimDeJogo( p, tab );
 		destroi_tab( &tab );
 
 	}while( get_jogada( jog ) != 's' );
