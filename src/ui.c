@@ -168,7 +168,7 @@ void opseguir ( tabuleiro_t* p , int *i) {
 	      	//while((tmp=getchar())!=EOF && tmp!='\n');
 		__fpurge(stdin);      	
 		tmp = scanf("%u%u%u",&m,&n,&q);
-		if(tmp != 3 || !(0 < q && q < m*n) || (m > 100) || (n > 100) )//Sem restrição, números negativos seriam convertidos para unsigned grandes e haveria falha de segmentação
+		if(tmp != 3 || !(0 < q && q < m*n) || (m*n > 1000000) )//Sem restrição, números negativos seriam convertidos para unsigned grandes e haveria falha de segmentação
 		{
 	      	   printf("Dimensão inválida !\n");
 	      	   tmp = 0;
