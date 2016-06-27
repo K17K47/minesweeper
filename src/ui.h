@@ -15,6 +15,6 @@ void imprimirTabuleiro ( tabuleiro_t tab );
 void lerJogada ( jogada_t* jog , tabuleiro_t tab );
 int menu ();
 void opseguir ( tabuleiro_t*p , int *i);
-void fimDeJogo( int i , tabuleiro_t tab , jogada_t *p );
+void fimDeJogo( int i , tabuleiro_t tab );
 
 #endif
