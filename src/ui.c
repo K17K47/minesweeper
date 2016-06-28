@@ -90,13 +90,13 @@ void lerJogada ( jogada_t* jog , tabuleiro_t tab )
 
 	do{
       printf("Digite uma coordenada e um opção de jogada (Exemplo : 5 5 v) \nCaso queria reniciar, digite (1 1 r) \nCaso queria sair, digite (1 1 s)\n");
-      __fpurge(stdin);     // limpando o buffer.
+      __fpurge(stdin);                                                                         // limpando o buffer.
 		tmp = scanf("%u%u %c",&x,&y,&op);
     
-		if(tmp != 3 || !(x>0 && x<=get_n(tab)) || !(y>0 && y<=get_m(tab)))
-		{                                                                      // verificando se a leitura do scanf foi bem-sucedida e se a jogada é válida( se a coordenada está de fato no tabuleiro.
-         printf("Jogada inválida!\n");
-         tmp = 0;
+		if(tmp != 3 || !(x>0 && x<=get_n(tab)) || !(y>0 && y<=get_m(tab)) || !( op == 'v' || op == 'm' || op == 'd' || op == 'r' || op== 's') )
+		{                                                                                      
+			printf("Jogada inválida!\n");                   // verificando se a leitura do scanf foi bem-sucedida e se a jogada é válida( se a coordenada está de fato no tabuleiro).                  
+			tmp = 0;
       }
 
       x--;
@@ -139,7 +139,7 @@ void opseguir ( tabuleiro_t* p , int *i)
 		do{
 	      printf("Para iniciar o jogo é preciso digitar o tamanho do tabuleiro ( Colunas X Linhas ) e o número de bombas (Exemplo : 10 10 2) :");
 		   __fpurge(stdin);
-		   tmp = scanf("%u%u%u",&m,&n,&q);              //recebendo o valor de retorno do scanf.
+		   tmp = scanf("%u%u%u",&m,&n,&q);                         //recebendo o valor de retorno do scanf.
                                                                                     
 			if(tmp != 3 || !(0 < q && q < m*n) || (m > 100) || (n > 100) )// Condição para montar o jogo / Sem restrição, números negativos seriam convertidos para unsigned grandes e haveria falha de segmentação.
 		   {
