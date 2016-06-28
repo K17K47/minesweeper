@@ -136,36 +136,62 @@ void ExecutaJogada( tabuleiro_t * tab, jogada_t * jogada, int * p )
 {
 	if( get_jogada( *jogada ) == 'v' ) // Caso usuário tenha marcado casa como vazia.
 	{
-		if( get_gabarito( *tab, get_coord( *jogada ) ) == 'B' ) // Se casa marcada vazia contiver bomba, opção de jogada  marcada para levar usuÃ¡rio ao menu inicial. 
+		if( get_gabarito( *tab, get_coord( *jogada ) ) == 'B' ) // Se casa marcada vazia contiver bomba, opção de jogada  marcada para levar usuário ao menu inicial. 
 		{
 			set_jogada( jogada, 'r');
 			return;
 		}
-		else if( get_gabarito( *tab, get_coord( *jogada ) ) != '0' ) // Se casa marcada vazia contiver nÃºmero diferente de zero, revela o nÃºmero.
+		else if( get_gabarito( *tab, get_coord( *jogada ) ) != '0' ) // Se casa marcada vazia contiver número diferente de zero, revela o número.
 		{
 			set_usr( tab, get_coord( *jogada ), get_gabarito( *tab, get_coord( *jogada ) ) );
 			return;
 		}
 	}
-	if( get_jogada( *jogada ) == 'm' ) // Caso usuÃ¡rio tenha marcado casa como minada.
+
+	if( get_jogada( *jogada ) == 'm' ) // Caso usuário tenha marcado casa como minada.
 	{
-		set_usr( tab, get_coord( *jogada ),'M' ); // Passa ao tabuleiro mostrado a marcaÃ§Ã£o.
-		if( get_gabarito( *tab, get_coord( *jogada ) ) == 'B' ) // Se casa realmente contiver bomba, incrementa contador de bombas marcadas.
+		if( get_usr( *tab, get_coord( *jogada ) ) == 'M' ) // Caso usuário já tenha marcado casa como minada e queira desmarcá-la.
 		{
-			*p = *p + 1;
+			set_usr( tab, get_coord( *jogada ),'*' );	
+		}
+		else if( get_usr( *tab, get_coord( *jogada ) ) == get_gabarito( *tab, get_coord( *jogada ) ) )
+		{
+			return;
+		}	
+		else
+		{
+			set_usr( tab, get_coord( *jogada ), 'M' ); // Passa ao tabuleiro mostrado a marcação.
+			if( get_gabarito( *tab, get_coord( *jogada ) ) == 'B' ) // Se casa realmente contiver bomba, incrementa contador de bombas marcadas.
+			{
+				*p = *p + 1;
+				return;
+			}		
+		}	
+	}
+	
+	if( get_jogada( *jogada ) == 'd') // Caso usuário tenha marcado casa como duvidosa.
+	{
+		if( get_usr( *tab, get_coord( *jogada ) ) == '?' ) // Caso usuário já tenha marcado casa como duvidosa e queira desmarcá-la.
+		{
+			set_usr( tab, get_coord( *jogada ),'*' );	
+		}	
+		else if( get_usr( *tab, get_coord( *jogada ) ) == get_gabarito( *tab, get_coord( *jogada ) ) )
+		{
+			return;
+		}		
+		else
+		{			
+			set_usr( tab, get_coord( *jogada ),'?' ); // Passa ao tabuleiro mostrado a marcação.
 			return;
 		}
 	}
-	if( get_jogada( *jogada ) == 'd') // Caso usuÃ¡rio tenha marcado casa como duvidosa.
-	{
-		set_usr( tab, get_coord( *jogada ),'?' ); // Passa ao tabuleiro mostrado a marcação.
-		return;
-	}
-	if( get_jogada( *jogada ) == 'r' ) // Caso usuÃ¡rio queira reiniciar o jogo.
+
+	if( get_jogada( *jogada ) == 'r' ) // Caso usuário queira reiniciar o jogo.
 	{
 		return;
 	}
-	if( get_jogada( *jogada ) == 's' ) // Caso usuÃ¡rio queira sair do jogo.
+
+	if( get_jogada( *jogada ) == 's' ) // Caso usuário queira sair do jogo.
 	{
 		return;
 	}
