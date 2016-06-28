@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdio_ext.h>
 
-void imprimirTabuleiro ( tabuleiro_t tab ) { // está função escrita basedo na construção do próprio tabuleiro. Por isso alguns printf's imprimem alguns espaços se nao o tabuleiro ficaria desalinhado.
+void imprimirTabuleiro ( tabuleiro_t tab ) { 
 
    int i , j ;
    vec v ;
@@ -44,7 +44,7 @@ void imprimirTabuleiro ( tabuleiro_t tab ) { // está função escrita basedo na
 					v.y = i/2 - 1;
 					printf (" %c |",get_usr(tab,v)) ;
          	}
-        		printf(" %d\n", i/2);                   // o uso dos if's é por causa de que numero maior que 9 ou 99 ocupara mais espaço deixando o tabuleiro desalinhado.
+        		printf(" %d\n", i/2);                   // o uso dos if's é por causa de que numero maior que 9 oocupara mais espaço deixando o tabuleiro desalinhado.
 			}
 			else if( i <= 198 )
 			{                                                 // me preocupei em imprimir o tabuleiro  no máximo 100 x 100 , pois maior que isso nao ficaria comfortável para o usuario jogar no terminal.
@@ -124,7 +124,7 @@ void opseguir ( tabuleiro_t* p , int *i) {
 	   do{
 	      printf("Para iniciar o jogo é preciso digitar o tamanho do tabuleiro ( Colunas X Linhas ) e o número de bombas (Exemplo : 10 10 2) :");
 		   __fpurge(stdin);
-		   tmp = scanf("%u%u%u",&m,&n,&q);
+		   tmp = scanf("%u%u%u",&m,&n,&q);       //recebendo o valor de retorno do scanf.
 		   if(tmp != 3 || !(0 < q && q < m*n) || (m > 100) || (n > 100) )// Condição para montar o jogo / Sem restrição, números negativos seriam convertidos para unsigned grandes e haveria falha de segmentação.
 		   {
 	         	   printf("Dimensão inválida !\n");
@@ -145,7 +145,7 @@ void opseguir ( tabuleiro_t* p , int *i) {
    }else{
 
       printf("Erro de opção.Tente novamente :" );
-      opseguir( p , i);      // chamando novamente a função caso o usuário nao digite 1 ou 2 .
+      opseguir( p , i);      // chamando novamente a função caso o usuário digite a opção diferente 1 ou 2 .
       __fpurge(stdin);
    }
 }
@@ -157,7 +157,7 @@ void fimDeJogo( int i , tabuleiro_t tab  ) { // está função apresenta ao usu�
       printf(" Parabéns ! Você Venceu ! Marcou todas as bombas  \n\n " ) ;
 
    } else {
-      printf(" Você perdeu ! Você marcou %d de %u bombas  \n\n", i , get_q(tab) ) ; // numero de bombas marcadas.
+      printf(" Você perdeu ! Você marcou %d de %u bombas  \n\n", i , get_q(tab) ) ; // número de bombas marcadas.
 
    }
 
