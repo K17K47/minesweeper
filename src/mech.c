@@ -87,34 +87,34 @@ void AvaliarVizinhos( tabuleiro_t * tab )
 	}
 }
 
-void Revela( tabuleiro_t * tab, vec v ) //v = get_coord( jogada )
+void Revela( tabuleiro_t * tab, vec v ) // Na main, usa-se v = get_coord( jogada ).
 {
 	int i = -1, j = -1;
 	int x, y;
 	x = (int) v.x;
 	y = (int) v.y;
-	if( get_gabarito( *tab, v ) != '0') //garante nulidade
+	if( get_gabarito( *tab, v ) != '0') // Garante nulidade do elemento.
 	{
 		return;
 	}
-	for( i = -1; i < 2; i++ )
+	for( i = -1; i < 2; i++ ) // Percorre as duas colunas vizinhas e a própria coluna do elemento.
 	{
-		for( j = -1; j < 2; j++ )
+		for( j = -1; j < 2; j++ ) // Percorre as duas linhas vizinhas e a própria linha do elemento. 
 		{
-			if( y + j < 0 || x + i < 0 || y + j >= get_m( *tab ) || x + i >= get_n( *tab ) ) // pula indevidos/inexistentes
+			if( y + j < 0 || x + i < 0 || y + j >= get_m( *tab ) || x + i >= get_n( *tab ) ) // Pula elementos indevidos ou inexistentes.
 			{
 				continue;
 			}
 			v.x = x + i;
-			v.y = y + j;
-			if( get_usr( *tab, v ) ==  get_gabarito( *tab, v ) ) //pula já revelados
+			v.y = y + j; // Seleciona elemento vizinho ao (x,y).
+			if( get_usr( *tab, v ) ==  get_gabarito( *tab, v ) ) // Pula vizinhos já revelados.
 			{
 				continue;
 			}
 			else
 			{
-				set_usr( tab, v, get_gabarito( *tab, v ) ); //revela realmente
-				if( get_gabarito( *tab, v ) == '0' )
+				set_usr( tab, v, get_gabarito( *tab, v ) ); // Revela vizinhos.
+				if( get_gabarito( *tab, v ) == '0' ) // Caso vizinho também seja nulo, recorre-se ao uso recursivo da função Revela.
 				{
 					v.x = x + i;
 					v.y = y + j;
@@ -135,38 +135,38 @@ if( ( get_jogada( jogada ) == 'v' ) && ( get_gabarito( gabarito, get_coord( joga
 
 void ExecutaJogada( tabuleiro_t * tab, jogada_t * jogada, int * p )
 {
-	if( get_jogada( *jogada ) == 'v' )
+	if( get_jogada( *jogada ) == 'v' ) // Caso usuário tenha marcado casa como vazia.
 	{
-		if( get_gabarito( *tab, get_coord( *jogada ) ) == 'B' )//perdeu jogo
+		if( get_gabarito( *tab, get_coord( *jogada ) ) == 'B' ) // Se casa marcada vazia contiver bomba, opção de jogada é marcada para levar usuário ao menu inicial. 
 		{
 			set_jogada( jogada, 'r');
 			return;
 		}
-		else if( get_gabarito( *tab, get_coord( *jogada ) ) != '0' )
+		else if( get_gabarito( *tab, get_coord( *jogada ) ) != '0' ) // Se casa marcada vazia contiver número diferente de zero, revela o número.
 		{
 			set_usr( tab, get_coord( *jogada ), get_gabarito( *tab, get_coord( *jogada ) ) );
 			return;
 		}
 	}
-	if( get_jogada( *jogada ) == 'm' )
+	if( get_jogada( *jogada ) == 'm' ) // Caso usuário tenha marcado casa como minada.
 	{
-		set_usr( tab, get_coord( *jogada ),'M' );
-		if( get_gabarito( *tab, get_coord( *jogada ) ) == 'B' )
+		set_usr( tab, get_coord( *jogada ),'M' ); // Passa ao tabuleiro mostrado a marcação.
+		if( get_gabarito( *tab, get_coord( *jogada ) ) == 'B' ) // Se casa realmente contiver bomba, incrementa contador de bombas marcadas.
 		{
 			*p = *p + 1;
 			return;
 		}
 	}
-	if( get_jogada( *jogada ) == 'd')
+	if( get_jogada( *jogada ) == 'd') // Caso usuário tenha marcado casa como duvidosa.
 	{
-		set_usr( tab, get_coord( *jogada ),'D' );
+		set_usr( tab, get_coord( *jogada ),'D' ); // Passa ao tabuleiro mostrado a marcação.
 		return;
 	}
-	if( get_jogada( *jogada ) == 'r' )
+	if( get_jogada( *jogada ) == 'r' ) // Caso usuário queira reiniciar o jogo.
 	{
 		return;
 	}
-	if( get_jogada( *jogada ) == 's' )
+	if( get_jogada( *jogada ) == 's' ) // Caso usuário queira sair do jogo.
 	{
 		return;
 	}
