@@ -8,7 +8,7 @@ void imprimirTabuleiro ( tabuleiro_t tab ) { // está função escrita basedo na
    int i , j ;
    vec v ;
 
-	printf("     1"); // Da linha 11 a 24 do código, imprimo a primeira linha númerica (linha coordenadas). 
+	printf("     1"); // Da linha 11 a 24 do código, imprimo a primeira linha númerica (linha coordenadas).
 
    for(j = 2 ; j <= get_n(tab) ; j++)
 	{
@@ -64,7 +64,7 @@ void imprimirTabuleiro ( tabuleiro_t tab ) { // está função escrita basedo na
                                                       // imprimo a última linhas numérica ( linha coordenada ).
    for(j = 2 ; j <= get_n(tab) ; j++)
 	{
-      if( j < 10 )                                   // uso do if  é pelo mesmo motivo do anterior. 
+      if( j < 10 )                                   // uso do if  é pelo mesmo motivo do anterior.
       {
 			printf("   %d",j);
 		}
@@ -75,8 +75,6 @@ void imprimirTabuleiro ( tabuleiro_t tab ) { // está função escrita basedo na
 	}
 	printf("\n");   // está função foi escrita basedo na construção do próprio tabuleiro.Por isso foi necessário ter alguns printf's que imprimem alguns espaços , pois se não o tabuleiro ficaria desalinhado.
 }
-   
-
 
 
 void lerJogada ( jogada_t* jog , tabuleiro_t tab ) {
@@ -87,8 +85,8 @@ void lerJogada ( jogada_t* jog , tabuleiro_t tab ) {
 
    do{
       printf("Digite uma coordenada e um opção de jogada (Exemplo : 5 5 v) \nCaso queria reniciar, digite (1 1 r) \nCaso queria sair, digite (1 1 s)\n");
-      __fpurge(stdin);                                                         // limpando o buffer. 
-      tmp = scanf("%u%u %c",&x,&y,&op);                                        
+      __fpurge(stdin);     // limpando o buffer.
+      tmp = scanf("%u%u %c",&x,&y,&op);
       if(tmp != 3 || !(x>0 && x<=get_n(tab)) || !(y>0 && y<=get_m(tab))){     // verificando se a leitura do scanf foi bem-sucedida e se a jogada é válida( se a coordenada está de fato no tabuleiro.
          printf("Jogada inválida!\n");
          tmp = 0;
@@ -99,46 +97,8 @@ void lerJogada ( jogada_t* jog , tabuleiro_t tab ) {
 
    set_coord ( jog , x,  y);
    set_jogada( jog , op);
- 
- /*
-   printf(" Digite a coordenada e a opção de jogada : " );
-   scanf("%u%u",&x,&y);
-   while( getchar() != '\n' );
-   op=getchar();
-   while( getchar() != '\n' );
-   x = x - 1 ;
-   y = y - 1 ;
 
-   if(( !(x <= get_n(tab) ) || !(y <= get_m(tab) ) ) &&
-      ( !(op == 'v') || !(op == 'm') || !( op == 'd' ))) {
-
-      printf(" Erro na coordenada e na opção de jogada.Digite novamente : ") ;
-      scanf("%u%u",&x,&y);
-      
-      while( getchar() != '\n' );
-      op=getchar();
-      while( getchar() != '\n' );
-
-   }
-
-   while ( !(x <= get_n(tab)) || !(y <= get_m(tab)) ){
-
-      printf(" Erro na coordenada.Digite novamente : " );
-      scanf("%u%u",&x,&y);
-      while( getchar() != '\n' );
-
-   }
-   while ( !( op == 'v' || op == 'd' || op == 'm' ) ) {
-
-      printf(" Erro na opção de jogo.Digite novamente : " );
-
-      op=getchar();
-      while( getchar() != '\n' );
-   }
-
-   set_coord ( jog , x,  y);
-   set_jogada( jog , op);
-*/}
+}
 
 int menu () {        // função menu.
    int op ;
@@ -161,20 +121,19 @@ void opseguir ( tabuleiro_t* p , int *i) {
 
    if( op == 1 ){
 
-	do{
-	   printf("Para iniciar o jogo é preciso digitar o tamanho do tabuleiro ( Colunas X Linhas ) e o número de bombas (Exemplo : 10 10 2) :");
-	      	//while((tmp=getchar())!=EOF && tmp!='\n');
-		__fpurge(stdin);      	
-		tmp = scanf("%u%u%u",&m,&n,&q);
-		if(tmp != 3 || !(0 < q && q < m*n) || (m > 100) || (n > 100) )// Condição para montar o jogo / Sem restrição, números negativos seriam convertidos para unsigned grandes e haveria falha de segmentação.
-		{
-	      	   printf("Dimensão inválida !\n");
-	      	   tmp = 0;
-		}
-		}while((tmp != 3));
+	   do{
+	      printf("Para iniciar o jogo é preciso digitar o tamanho do tabuleiro ( Colunas X Linhas ) e o número de bombas (Exemplo : 10 10 2) :");
+		   __fpurge(stdin);
+		   tmp = scanf("%u%u%u",&m,&n,&q);
+		   if(tmp != 3 || !(0 < q && q < m*n) || (m > 100) || (n > 100) )// Condição para montar o jogo / Sem restrição, números negativos seriam convertidos para unsigned grandes e haveria falha de segmentação.
+		   {
+	         	   printf("Dimensão inválida !\n");
+	      	      tmp = 0;
+		   }
+	   }while((tmp != 3));
 
       set_m(p,m);
-      set_n(p,n);          
+      set_n(p,n);
       set_q(p,q);
       *i = 1;
 
@@ -185,15 +144,15 @@ void opseguir ( tabuleiro_t* p , int *i) {
       return;
    }else{
 
-      printf("Erro de opção.Tente novamente :" ) ;    
-      opseguir( p , i) ;                             // chamando novamente a função caso o usuário nao digite 1 ou 2 .
-     __fpurge(stdin);
+      printf("Erro de opção.Tente novamente :" );
+      opseguir( p , i);      // chamando novamente a função caso o usuário nao digite 1 ou 2 .
+      __fpurge(stdin);
    }
 }
 
-void fimDeJogo( int i , tabuleiro_t tab  ) {                          // está função apresenta ao usuário o resultado.  
+void fimDeJogo( int i , tabuleiro_t tab  ) { // está função apresenta ao usuário o resultado.
 
-   printf (" Fim de jogo \n Resultado: \n" ) ;
+   printf (" Fim de jogo \n Resultado: \n" );
    if( i == get_q( tab ) ){
       printf(" Parabéns ! Você Venceu ! Marcou todas as bombas  \n\n " ) ;
 
@@ -202,6 +161,4 @@ void fimDeJogo( int i , tabuleiro_t tab  ) {                          // está f
 
    }
 
-
 }
-
