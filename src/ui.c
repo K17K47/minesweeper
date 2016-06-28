@@ -162,7 +162,7 @@ void opseguir ( tabuleiro_t* p , int *i) {
    if( op == 1 ){
 
 	do{
-	      	printf("Para iniciar o jogo é preciso digitar o tamanho do tabuleiro ( Colunas X Linhas ) e o número de bombas (Exemplo : 10 10 2) :");
+	   printf("Para iniciar o jogo é preciso digitar o tamanho do tabuleiro ( Colunas X Linhas ) e o número de bombas (Exemplo : 10 10 2) :");
 	      	//while((tmp=getchar())!=EOF && tmp!='\n');
 		__fpurge(stdin);      	
 		tmp = scanf("%u%u%u",&m,&n,&q);
@@ -170,8 +170,8 @@ void opseguir ( tabuleiro_t* p , int *i) {
 		{
 	      	   printf("Dimensão inválida !\n");
 	      	   tmp = 0;
-	      	}
-       	}while((tmp != 3));
+		}
+		}while((tmp != 3));
 
       set_m(p,m);
       set_n(p,n);          
