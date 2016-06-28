@@ -47,7 +47,7 @@ void imprimirTabuleiro ( tabuleiro_t tab ) {
         		printf(" %d\n", i/2);                   // o uso dos if's é por causa de que numero maior que 9 oocupara mais espaço deixando o tabuleiro desalinhado.
 			}
 			else if( i <= 198 )
-			{                                                 // me preocupei em imprimir o tabuleiro  no máximo 100 x 100 , pois maior que isso nao ficaria comfortável para o usuario jogar no terminal.
+			{                                                 // me preocupei em imprimir o tabuleiro  no máximo 100 x 100 , pois maior que isso nao ficaria confortável para o usuario jogar no terminal.
 				printf("%d |",i/2) ;
 				for ( j = 1; j <= get_n(tab) ; j++ )
 				{
