@@ -19,7 +19,7 @@ int main()
 		inicializa_tab( &tab ); // Reserva espaço na memória para o tabuleiro.
 
 		CriarTabuleiroUsr( &tab ); // Preparação do tabuleiro mostrado ao usuário e tabuleiro "gabarito".
-		ColocarBombas( &tab );		
+		ColocarBombas( &tab );
 		AvaliarVizinhos( &tab );
 
 		p = 0; // Inicializa contador de bombas marcadas.
