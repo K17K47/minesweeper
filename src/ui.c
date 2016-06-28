@@ -8,7 +8,7 @@ void imprimirTabuleiro ( tabuleiro_t tab ) { // está função escrita basedo na
    int i , j ;
    vec v ;
 
-	printf("     1"); // Da linha 11 a 24 do código, imprimo a primeira linha númerica (linha coordenadas) 
+	printf("     1"); // Da linha 11 a 24 do código, imprimo a primeira linha númerica (linha coordenadas). 
 
    for(j = 2 ; j <= get_n(tab) ; j++)
 	{
@@ -23,7 +23,7 @@ void imprimirTabuleiro ( tabuleiro_t tab ) { // está função escrita basedo na
 	}
 	printf("\n");
 
-	for ( i = 1 ; i <= get_m(tab)*2 + 1 ; i++ )  // da linhas 26 a 36, imprimo as linhas impares como+---+
+	for ( i = 1 ; i <= get_m(tab)*2 + 1 ; i++ )  // da linhas 26 a 36, imprimo as linhas impares como +---+ .
    {
 		if ( i%2 == 1 )
       {
@@ -35,7 +35,7 @@ void imprimirTabuleiro ( tabuleiro_t tab ) { // está função escrita basedo na
 			printf("\n");
 		}
       else {
-			if( i <= 18)                           // da linhas 37 ate 62 , imprimo as barras | , coluna coordenada e o carater dentro das casas
+			if( i <= 18)                           // da linhas 37 ate 62 , imprimo as barras | , coluna coordenada e o carater dentro das casas.
 			{
 				printf(" %d |",i/2) ;
 				for ( j = 1; j <= get_n(tab) ; j++ )
@@ -44,10 +44,10 @@ void imprimirTabuleiro ( tabuleiro_t tab ) { // está função escrita basedo na
 					v.y = i/2 - 1;
 					printf (" %c |",get_usr(tab,v)) ;
          	}
-        		printf(" %d\n", i/2);                   // o uso dos if's é por causa de que numero maior que 9 ou 99 ocupara mais espaço deixando o tabuleiro desalinhado
+        		printf(" %d\n", i/2);                   // o uso dos if's é por causa de que numero maior que 9 ou 99 ocupara mais espaço deixando o tabuleiro desalinhado.
 			}
 			else if( i <= 198 )
-			{                                                 // me preocupei em imprimir o tabuleiro  no máximo 100 x 100 , pois maior que isso nao ficaria comfortável para o usuario jogar no terminal
+			{                                                 // me preocupei em imprimir o tabuleiro  no máximo 100 x 100 , pois maior que isso nao ficaria comfortável para o usuario jogar no terminal.
 				printf("%d |",i/2) ;
 				for ( j = 1; j <= get_n(tab) ; j++ )
 				{
@@ -61,10 +61,10 @@ void imprimirTabuleiro ( tabuleiro_t tab ) { // está função escrita basedo na
 	}
 
 	printf("     1");
-                                                      // imprimo a última linhas numérica ( linha coordenada )
+                                                      // imprimo a última linhas numérica ( linha coordenada ).
    for(j = 2 ; j <= get_n(tab) ; j++)
 	{
-      if( j < 10 )                                   // uso do if  é pelo mesmo motivo do anterior 
+      if( j < 10 )                                   // uso do if  é pelo mesmo motivo do anterior. 
       {
 			printf("   %d",j);
 		}
@@ -191,7 +191,7 @@ void opseguir ( tabuleiro_t* p , int *i) {
    }
 }
 
-void fimDeJogo( int i , tabuleiro_t tab  ) {                          // está função apresenta ao usuário sobre o resultado.  
+void fimDeJogo( int i , tabuleiro_t tab  ) {                          // está função apresenta ao usuário o resultado.  
 
    printf (" Fim de jogo \n Resultado: \n" ) ;
    if( i == get_q( tab ) ){
