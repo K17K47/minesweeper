@@ -8,20 +8,20 @@ void CriarTabuleiroUsr( tabuleiro_t * tab )
 {
 	unsigned i, j;
 	vec v;
-	for( j = 0; j < get_m( *tab ); j++ )
+	for( j = 0; j < get_m( *tab ); j++ ) // Percorre todas as linhas.
 	{
-		for( i = 0; i < get_n( *tab ); i++)
+		for( i = 0; i < get_n( *tab ); i++) // Percorre todas as colunas de cada linha.
 		{
 			v.x = i;
 			v.y = j;
-			set_usr( tab, v, '*' );
+			set_usr( tab, v, '*' ); // Atribui o '*' ao elemento de cada coordenada, criando a "cortina" vista pelo usuário.
 		}
 	}
 }
 
 void ColocarBombas( tabuleiro_t * tab )
 {
-	srand( (unsigned)time( NULL ) );
+	srand( (unsigned)time( NULL ) ); // Alimenta o gerador de números pseudo-aleatórios com o tempo.
 	
 	int i = 0;
 	vec v;
@@ -29,68 +29,60 @@ void ColocarBombas( tabuleiro_t * tab )
 	do
 	{
 		v.x = rand() % get_n( *tab );
-		v.y = rand() % get_m( *tab );
+		v.y = rand() % get_m( *tab ); // Gera coordenadas randômicas.
 
-		while( get_gabarito( *tab, v ) == 'B')
+		while( get_gabarito( *tab, v ) == 'B') // Verifica se as coordenadas geradas já não possuem bombas.
 		{
 			v.x = rand() % get_n( *tab );
-			v.y = rand() % get_m( *tab );
+			v.y = rand() % get_m( *tab ); // Gera novas coordenadas até obter um elemnto sem bomba.
 		}
 
-		set_gabarito( tab, v, 'B' );
-		i = i + 1; 
+		set_gabarito( tab, v, 'B' ); // Atribui bomba ao elemento escolhido.
+		i = i + 1; // Icrementa contador de bombas.
 		
 	}while( i < get_q( *tab ) );
 }
-
-/*
-Na main
-for(i = 0; i < get_q( tab ); i++)
-		{
-			ColocarBombas( &tab );
-		}		
-*/
 
 void AvaliarVizinhos( tabuleiro_t * tab )
 {
 	int x, y, i, j, b;
 	vec v;
 	char a;
-	for( y = 0; y < get_m( *tab ); y++)
+	for( y = 0; y < get_m( *tab ); y++) // Percorre todas as linhas.
 	{
-		for( x = 0; x < get_n( *tab ); x++)
+		for( x = 0; x < get_n( *tab ); x++) // Percorre todas as colunas de cada linha.
 		{
 			v.x = x;
-			v.y = y;
+			v.y = y; // Seleciona coordenadas da linha e coluna presentes.
 			b = 0;
-			if( get_gabarito( *tab, v ) == 'B') //pula elementos com bombas
+			if( get_gabarito( *tab, v ) == 'B') // Pula elementos com bombas.
 			{
 				continue;
 			}
-			for( i = -1; i < 2; i++ )
+			for( i = -1; i < 2; i++ ) // Percorre as duas colunas vizinhas e a própria coluna do elemento. 
 			{
-				for( j = -1; j < 2; j++ )
+				for( j = -1; j < 2; j++ ) // Percorre as duas linha vizinhas e a própria linha do elemento.
 				{
-					if( i==0 && j==0 ) //pula o próprio elemento
+					if( i==0 && j==0 ) // Pula o próprio elemento.
 					{
 						continue;
 					}
-					if( y + j < 0 || x + i < 0 || y + j >= get_m( *tab ) || x + i >= get_n( *tab ) ) //pula indevidos/inexistentes
+					if( y + j < 0 || x + i < 0 || y + j >= get_m( *tab ) || x + i >= get_n( *tab ) ) // Pula elementos indevidos ou inexistentes.
 					{
 						continue;
 					}
 					v.x = x + i;
-					v.y = y + j;
+					v.y = y + j; // Seleciona elemento vizinho ao (x,y) - escolhido na linha de código 55 e 56.
 					if( get_gabarito( *tab, v ) == 'B')
 					{
-						b = b + 1;
+						b = b + 1; // Incrementa contador de bombas.
 					}
 				}
 			}
 			v.x = x;
-			v.y = y;
-			a = (char) b + '0'; //transformar q em char
-			set_gabarito( tab, v, a );
+			v.y = y; // Seleciona novamenteo elemento (x,y).
+			a = (char) b + '0'; // Transformar o contador em char.
+			set_gabarito( tab, v, a ); // Atribui ao elemento (x,y) o número (char) do contador.
 		}
 	}
 }
