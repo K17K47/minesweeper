@@ -159,7 +159,7 @@ void ExecutaJogada( tabuleiro_t * tab, jogada_t * jogada, int * p )
 	}
 	if( get_jogada( *jogada ) == 'd') // Caso usuário tenha marcado casa como duvidosa.
 	{
-		set_usr( tab, get_coord( *jogada ),'D' ); // Passa ao tabuleiro mostrado a marcação.
+		set_usr( tab, get_coord( *jogada ),'?' ); // Passa ao tabuleiro mostrado a marcação.
 		return;
 	}
 	if( get_jogada( *jogada ) == 'r' ) // Caso usuário queira reiniciar o jogo.
