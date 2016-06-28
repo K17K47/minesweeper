@@ -66,7 +66,7 @@ void AvaliarVizinhos( tabuleiro_t * tab )
 					{
 						continue;
 					}
-					if( y + j < 0 || x + i < 0 || y + j >= get_m( *tab ) || x + i >= get_n( *tab ) ) // Pula elementos indevidos ou inexistentes.
+					if( y + j < 0 || x + i < 0 || y + j >= get_m( *tab ) || x + i >= get_n( *tab ) ) // Pula indevidos.
 					{
 						continue;
 					}
@@ -100,24 +100,23 @@ void Revela( tabuleiro_t * tab, vec v ) // Na main, usa-se v = get_coord( jogada
 	{
 		for( j = -1; j < 2; j++ ) // Percorre as duas linhas vizinhas e a própria linha do elemento.
 		{
-			if( y + j < 0 || x + i < 0 || y + j >= get_m( *tab ) || x + i >= get_n( *tab ) ) // Pula elementos indevidos ou inexistentes.
+			if( y + j < 0 || x + i < 0 || y + j >= get_m( *tab ) || x + i >= get_n( *tab ) ) // Pula indevidos.
 			{
 				continue;
 			}
 			v.x = x + i;
 			v.y = y + j; // Seleciona elemento vizinho ao (x,y).
-			if( get_usr( *tab, v ) ==  get_gabarito( *tab, v ) ) // Pula vizinhos já revelados.
+			if( ( get_usr( *tab, v ) ==  get_gabarito( *tab, v ) ) || ( get_usr( *tab, v ) == ' ') ) // Pula já revelados.
 			{
 				continue;
 			}
 			else
 			{
 				set_usr( tab, v, get_gabarito( *tab, v ) ); // Revela vizinhos.
-				if( get_gabarito( *tab, v ) == '0' ) // Uso recursivo da função Revela no vizinho nulo.
+				if( get_gabarito( *tab, v ) == '0' )
 				{
-					v.x = x + i;
-					v.y = y + j;
-					Revela( tab, v);
+					set_usr( tab, v, ' ' ); // Atribui espaço vazio aos nulos.
+					Revela( tab, v); // Uso recursivo da função Revela no vizinho nulo.
 				}
 			}
 		}
