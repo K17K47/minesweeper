@@ -113,7 +113,7 @@ void Revela( tabuleiro_t * tab, vec v ) // Na main, usa-se v = get_coord( jogada
 			else
 			{
 				set_usr( tab, v, get_gabarito( *tab, v ) ); // Revela vizinhos.
-				if( get_gabarito( *tab, v ) == '0' ) // Caso vizinho também seja nulo, recorre-se ao uso recursivo da função Revela.
+				if( get_gabarito( *tab, v ) == '0' ) // Uso recursivo da função Revela no vizinho nulo.
 				{
 					v.x = x + i;
 					v.y = y + j;
@@ -124,24 +124,16 @@ void Revela( tabuleiro_t * tab, vec v ) // Na main, usa-se v = get_coord( jogada
 	}
 }
 
-/*
-Na main
-if( ( get_jogada( jogada ) == 'v' ) && ( get_gabarito( gabarito, get_coord( jogada ) ) == '0' ) )
-{
-	Revela( &tab, get_coord( jogada ) );
-}
-*/
-
 void ExecutaJogada( tabuleiro_t * tab, jogada_t * jogada, int * p )
 {
 	if( get_jogada( *jogada ) == 'v' ) // Caso usuário tenha marcado casa como vazia.
 	{
-		if( get_gabarito( *tab, get_coord( *jogada ) ) == 'B' ) // Se casa marcada vazia contiver bomba, opção de jogada  marcada para levar usuário ao menu inicial. 
+		if( get_gabarito( *tab, get_coord( *jogada ) ) == 'B' ) 
 		{
-			set_jogada( jogada, 'r');
+			set_jogada( jogada, 'r'); // Leva usuário ao menu inicial se cair em uma bomba. 
 			return;
 		}
-		else if( get_gabarito( *tab, get_coord( *jogada ) ) != '0' ) // Se casa marcada vazia contiver número diferente de zero, revela o número.
+		else if( get_gabarito( *tab, get_coord( *jogada ) ) != '0' ) // Revela o número diferente de zero.
 		{
 			set_usr( tab, get_coord( *jogada ), get_gabarito( *tab, get_coord( *jogada ) ) );
 			return;
@@ -161,7 +153,7 @@ void ExecutaJogada( tabuleiro_t * tab, jogada_t * jogada, int * p )
 		else
 		{
 			set_usr( tab, get_coord( *jogada ), 'M' ); // Passa ao tabuleiro mostrado a marcação.
-			if( get_gabarito( *tab, get_coord( *jogada ) ) == 'B' ) // Se casa realmente contiver bomba, incrementa contador de bombas marcadas.
+			if( get_gabarito( *tab, get_coord( *jogada ) ) == 'B' ) // Incrementa contador de bombas marcadas.
 			{
 				*p = *p + 1;
 				return;
