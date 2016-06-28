@@ -78,8 +78,8 @@ void imprimirTabuleiro ( tabuleiro_t tab )
 		}
 	}
 
-	printf("\n");   // está função foi escrita basedo na construção do próprio tabuleiro.Por isso foi necessário ter alguns printf's que imprimem alguns espaços , pois se não o tabuleiro ficaria desalinhado.
-}
+	printf("\n");   // está função foi escrita basedo na construção do próprio tabuleiro
+}         // Por isso foi necessário ter alguns printf's que imprimem alguns espaços , pois se não o tabuleiro ficaria desalinhado.
 
 
 void lerJogada ( jogada_t* jog , tabuleiro_t tab ) 
@@ -95,7 +95,7 @@ void lerJogada ( jogada_t* jog , tabuleiro_t tab )
     
 		if(tmp != 3 || !(x>0 && x<=get_n(tab)) || !(y>0 && y<=get_m(tab)) || !( op == 'v' || op == 'm' || op == 'd' || op == 'r' || op== 's') )
 		{                                                                                      
-			printf("Jogada inválida!\n");                   // verificando se a leitura do scanf foi bem-sucedida e se a jogada é válida( se a coordenada está de fato no tabuleiro).                  
+			printf("Jogada inválida!\n");    // verificando se a leitura do scanf foi bem-sucedida e se a jogada é válida( se a coordenada está de fato no tabuleiro).                  
 			tmp = 0;
       }
 
@@ -110,7 +110,7 @@ void lerJogada ( jogada_t* jog , tabuleiro_t tab )
 }
 
 int menu () 
-{                                 // função menu.
+{                   // função menu.
    int op ;
    char tmp ;
 
@@ -141,11 +141,11 @@ void opseguir ( tabuleiro_t* p , int *i)
 		   __fpurge(stdin);
 		   tmp = scanf("%u%u%u",&m,&n,&q);                         //recebendo o valor de retorno do scanf.
                                                                                     
-			if(tmp != 3 || !(0 < q && q < m*n) || (m > 100) || (n > 100) )// Condição para montar o jogo / Sem restrição, números negativos seriam convertidos para unsigned grandes e haveria falha de segmentação.
+			if(tmp != 3 || !(0 < q && q < m*n) || (m > 100) || (n > 100) )
 		   {
 	         	   printf("Dimensão inválida !\n");
 	      	      tmp = 0;
-		   }
+		   }                 //linha 139 150. Condição para montar o jogo / Sem restrição, números negativos seriam convertidos para unsigned grandes e haveria falha de segmentação.
 
 		}while((tmp != 3));
 
