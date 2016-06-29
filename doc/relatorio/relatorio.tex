@@ -58,15 +58,87 @@ Iniciando no dia 2 de junho, organizamos a primeira reunião da equipe de projet
 \section{Estrutura do Projeto}
 Durante as primeiras reuniões um dos principais tópicos foi a Estrutura do Projeto como um todo. Já que a idéia dominante nas discussões era a de como seria a secção do projeto e a divisão das tarefas de desenvolvimento, e já que este determina como será escrito o software todo, este mostrou-se como o tópico mais importante de toda a primeira fase da execução do projeto.
 
-Logo no início, ficara decidido que o projeto teria uma estrutura modular, com unidades de código bem delimitadas, e relacionadas entre si por interfaces pré-definidas, de maneira que o código seja o mais flexível possível, mantendo ainda uma alta independência de implementação.
+Logo no início, ficara decidido que o projeto teria uma estrutura modular, com unidades de código bem delimitadas, e relacionadas entre si por interfaces pré-definidas, de maneira que o código seja o mais flexível possível, mantendo ainda uma alta independência de implementação e uma relativa simplicidade de uso dos módulos.
 
-Estas escolhas de design direcionaram o projeto para um estilo próximo à Programação Orientada à Objetos e a Programação Modular. Com isso, as posteriores reuniões foram reservadas apenas à determinação dos módulos e de suas interfaces de código. Ao fim 
+Estas escolhas de design direcionaram o projeto para um estilo próximo à Programação Orientada à Objetos e a Programação Modular. Com isso, as posteriores reuniões foram reservadas apenas à determinação dos módulos e de suas interfaces de código. Ao fim do planejamento chegamos a uma organização composta por 3 módulos: \textbf{Mecânica de Jogo}, \textbf{Interface de Usuário} e \textbf{Estruturas de Dados}.
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.5\textwidth]{diagrama.png}
 \caption{Módulos e Arquivos do Projeto}
 \end{figure}
+
+\subsection{Estruturas de Dados}
+Neste módulo são implementadas estruturas de dados auxiliares, como vetores para coordenadas em 2-D, e estruturas de dados básicas do jogo, como o tabuleiro do campo minado, e suas interfaces de programação, tal como métodos para criação e destruição destas, e métodos para manipulação de seus estados internos e dados armazenados.
+
+\subsubsection{Estrutura ``vec''}
+Esta estrutura é uma simples estrutura para armazenamento de coordenadas cartesianas 2-D inteiras no primeiro quadrante. Não possui métodos implementados.
+
+\begin{tabular}{| c | c | l |}
+\hline Nome da estrutura & \multicolumn{2}{c |}{vec}\\
+\hline Nome do Campo & Tipo & Descrição\\
+\hline x & \textbf{unsigned} & Componente cartesiana em $x$\\
+y & \textbf{unsigned} & Componente cartesiana em $y$\\
+\hline
+\end{tabular}
+
+\subsubsection{Estrutura ``jogada\_t''}
+Esta estrutura tem a função de servir como estrutura de dados auxiliar, transportando o código e coordenada de uma jogada realizada pelo usuário. Possui métodos {\it getters} e {\it setters}.\\\\
+\begin{tabular}{| c | c | l |}
+\hline Nome da estrutura & \multicolumn{2}{c |}{jogada\_t}\\
+\hline Nome do Campo & Tipo & Descrição\\
+\hline v & \textbf{vec} & Coordenada cartesiana do ponto da jogada\\
+opjogada & \textbf{char} & Código da jogada\\
+\hline
+\end{tabular}
+
+\paragraph{Métodos}
+\begin{itemize}
+\item \textbf{char} {\it get\_jogada}(\textbf{jogada\_t} tab) : Retorna o código da jogada armazenada em uma estrutura \textbf{jogada\_t}.
+\item \textbf{void} {\it set\_jogada}(\textbf{jogada\_t*} tab, \textbf{char} op) : Armazena um código de jogada em uma estrutura \textbf{jogada\_t}.
+\item \textbf{vec} {\it get\_coord}(\textbf{jogada\_t} jogada) : Retorna a coordenada armazenada em uma estrutura \textbf{jogada\_t}.
+\item \textbf{void} {\it set\_coord}(\textbf{jogada\_t*} jogada, \textbf{unsigned} x, \textbf{unsigned} y) : Armazena uma coordenada em uma estrutura \textbf{jogada\_t}.
+\end{itemize}
+
+\subsubsection{Estrutura ``tabuleiro\_t''}
+Nesta estrutura são armazenadas informações sobre o tabuleiro do campo minado, tais como suas dimensões, número de minas semeadas, e dois vetores armazenando o estado atual do tabuleiro, uma máscara das casas livres, e informações sobre as minas e dicas de suas localizações. Possui métodos para inicialização, destruição, {\it getters} e {\it setters}.\\\\
+\begin{tabular}{| c | c | l |}
+\hline Nome da estrutura & \multicolumn{2}{c |}{tabuleiro\_t}\\
+\hline Nome do Campo & Tipo & Descrição\\
+\hline m & \textbf{unsigned} & Número de linhas do tabuleiro \\
+n & \textbf{unsigned} & Número de colunas do tabuleiro\\
+q & \textbf{unsigned} & Número de minas semeadas\\
+usr & \textbf{char*} & Vetor máscara do tabuleiro\\
+gabarito & \textbf{char*} & Vetor das minas e dicas do tabuleiro \\
+\hline
+\end{tabular}
+
+\paragraph{Métodos}
+\subparagraph{Inicialização e Destruição}
+\begin{itemize}
+\item \textbf{void} {\it inicializa\_tab}(\textbf{tabuleiro\_t*} tab) : Aloca espaço para os vetores da estrutura \textbf{tabuleiro\_t} de acordo com as dimensões armazenadas.
+\item \textbf{void} {\it destroi\_tab}(\textbf{tabuleiro\_t*} tab) : Libera o espaço alocado para os vetores da estrutura \textbf{tabuleiro\_t}.
+\end{itemize}
+\subparagraph{\textit{Getters}}
+\begin{itemize}
+\item \textbf{unsigned} {\it get\_m}(\textbf{tabuleiro\_t} tab) : Retorna a dimensão vertical do tabuleiro.
+\item \textbf{unsigned} {\it get\_n}(\textbf{tabuleiro\_t} tab) : Retorna a dimensão horizontal do tabuleiro.
+\item \textbf{unsigned} {\it get\_q}(\textbf{tabuleiro\_t} tab) : Retorna o número de minas do tabuleiro.
+\item \textbf{char} {\it get\_usr}(\textbf{tabuleiro\_t} tab, \textbf{vec} v) : Retorna o conteúdo de uma determinada coordenada \textbf{v} do tabuleiro máscara.
+\item \textbf{char} {\it get\_gabarito}(\textbf{tabuleiro\_t} tab, \textbf{vec} v) : Retorna o conteúdo de uma determinada coordenada \textbf{v} do tabuleiro das minas e dicas.
+\end{itemize}
+\subparagraph{\textit{Setters}}
+\begin{itemize}
+\item \textbf{void} {\it set\_m}(\textbf{tabuleiro\_t*} tab, \textbf{unsigned} m) : Armazena a dimensão vertical do tabuleiro.
+\item \textbf{void} {\it set\_n}(\textbf{tabuleiro\_t*} tab, \textbf{unsigned} n) : Armazena a dimensão horizontal do tabuleiro.
+\item \textbf{void} {\it set\_q}(\textbf{tabuleiro\_t*} tab, \textbf{unsigned} q) : Armazena o número de minas do tabuleiro.
+\item \textbf{void} {\it set\_usr}(\textbf{tabuleiro\_t*} tab, \textbf{vec} v, \textbf{char} usr) : Armazena um caractere \textbf{usr} em uma determinada coordenada \textbf{v} do tabuleiro máscara.
+\item \textbf{void} {\it set\_gabarito}(\textbf{tabuleiro\_t*} tab, \textbf{vec} v, \textbf{char} gabarito) : Armazena um caractere \textbf{gabarito} em uma determinada coordenada \textbf{v} do tabuleiro das minas e dicas.
+\end{itemize}
+\subsection{Mecânica de Jogo}
+T
+\subsection{Interface de Usuário}
+T
 \section{Ferramentas}
 T
 \chapter{Desenvolvimento}
