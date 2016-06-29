@@ -139,22 +139,28 @@ gabarito & \textbf{char*} & Vetor das minas e dicas do tabuleiro \\
 Neste módulo são implementadas funções relacionadas ao funcionamento do jogo, tal como rotinas para processar condições de vitória, ou rotinas para determinar os resultados de uma jogada efetuada pelo usuário. Não possui estruturas próprias. Depende do módulo \textbf{Estruturas de Dados}.
 \subsubsection{Método CriarTabuleiroUsr}
 \paragraph{Sintaxe}
-\textbf{void} {\it CriarTabuleiroUsr}(\textbf{tabuleiro\_t*} usr);
+\textbf{void} {\it CriarTabuleiroUsr}(\textbf{tabuleiro\_t*} usr);\\
+Preenche o tabuleiro máscara da estrutura \textbf{tabuleiro\_t} apontado por \textbf{usr} com asteriscos, colocando-no no estado inicial.
 \subsubsection{Método ColocarBombas}
 \paragraph{Sintaxe}
-\textbf{void} {\it ColocarBombas}(\textbf{tabuleiro\_t*} gabarito);
+\textbf{void} {\it ColocarBombas}(\textbf{tabuleiro\_t*} gabarito);\\
+Semeia o número de bombas configurado na estrutura \textbf{tabuleiro\_t} apontada por \textbf{gabarito}.
 \subsubsection{Método AvaliarVizinhos}
 \paragraph{Sintaxe}
-\textbf{void} {\it AvaliarVizinhos}(\textbf{tabuleiro\_t*} gabarito);
+\textbf{void} {\it AvaliarVizinhos}(\textbf{tabuleiro\_t*} gabarito);\\
+Preenche o tabuleiro máscara da estrutura \textbf{tabuleiro\_t} apontado por \textbf{gabarito} com dicas da presença de bombas na vizinhança de cada casa.
 \subsubsection{Método Revela}
 \paragraph{Sintaxe}
-\textbf{void} {\it Revela}(\textbf{tabuleiro\_t*} gabarito, \textbf{vec} v);
+\textbf{void} {\it Revela}(\textbf{tabuleiro\_t*} gabarito, \textbf{vec} v);\\
+Dada uma coordenada \textbf{v}, e uma estrutura \textbf{tabuleiro\_t} apontado por gabarito, revela as casas vizinhas à \textbf{v} no tabuleiro máscara da estrutura, tendo como fronteira, casas contendo dicas diferentes de zero.
 \subsubsection{Método ExecutaJogada}
 \paragraph{Sintaxe}
-\textbf{void} {\it ExecutaJogada}(\textbf{tabuleiro\_t*} gabarito, \textbf{jogada\_t*} jogada, \textbf{int*} p);
+\textbf{void} {\it ExecutaJogada}(\textbf{tabuleiro\_t*} gabarito, \textbf{jogada\_t*} jogada, \textbf{int*} p);\\
+Verifica o resultado de uma jogada, sendo \textbf{gabarito} um ponteiro para uma estrutura \textbf{tabuleiro\_t}, \textbf{jogada} um ponteiro para a estrutura \textbf{jogada\_t} da jogada a ser realizada, e \textbf{p} um ponteiro para a variável contador do número de minas marcadas corretamente.
 \subsubsection{Método ConfereRevelados}
 \paragraph{Sintaxe}
-\textbf{int} {\it ConfereRevelados}(\textbf{tabuleiro\_t} tab);
+\textbf{int} {\it ConfereRevelados}(\textbf{tabuleiro\_t} tab);\\
+Testa se o tabuleiro máscara da estrutura \textbf{tabuleiro\_t} apontada por \textbf{tab} já foi completamente revelado.
 \subsection{Interface de Usuário}
 T
 \section{Ferramentas}
