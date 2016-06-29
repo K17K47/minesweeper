@@ -29,12 +29,12 @@ int main()
 		{
 			imprimirTabuleiro( tab ); // Mostra tabuleiro ao usuário.
 			lerJogada( &jog , tab ); // Recebe jogada do usuário.
-			if( ( get_jogada( jog ) == 'v' ) && ( get_gabarito( tab, get_coord( jog ) ) == '0' ) ) // Caso em que jogador marcou casa que continha zero como vazia.
+			if( ( get_jogada( jog ) == 'v' ) && ( get_gabarito( tab, get_coord( jog ) ) == '0' ) )
 			{
 				Revela( &tab, get_coord( jog ) ); // Função específica para revelar zeros e seus vizinhos.
 			}
 			ExecutaJogada( &tab, &jog, &p ); // Função que avalia e executa jogadas possíveis.
-			if( p == get_q( tab ) ) // Caso em que o jogador marcou todas as minas.
+			if( p == get_q( tab ) && ConfereRevelados( tab ) == 1 ) // Se o usuário marcou todas as minas e revelou todas as casas.
 			{
 				set_jogada( &jog, 'r'); // Fim de jogo - vitória, 'r' permite que ele jogue novamente.
 			}
