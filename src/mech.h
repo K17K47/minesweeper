@@ -16,5 +16,6 @@ void ColocarBombas( tabuleiro_t * gabarito );
 void AvaliarVizinhos( tabuleiro_t * gabarito );
 void Revela( tabuleiro_t * gabarito, vec v  );
 void ExecutaJogada( tabuleiro_t* gabarito, jogada_t * jogada, int * p );
+int ConfereRevelados(tabuleiro_t tab);
 
 #endif
