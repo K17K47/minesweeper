@@ -9,6 +9,7 @@
 
 \usepackage{titlesec}
 \usepackage{termcal}
+\usepackage{hyperref}
 
 \graphicspath{{./img/}}
 
@@ -17,7 +18,11 @@
 
 \titleformat{\chapter}{\normalfont\huge}{\thechapter.}{20pt}{\huge\bf}
 
+\setcounter{tocdepth}{3}
+
 \begin{document}
+\tableofcontents
+
 \chapter{Resumo}
 
 Neste trabalho desenvolvemos uma versão simplificada de um jogo de computador bastante conhecido, o Campo Minado. Tendo em vista a finalidade didática da execução deste projeto, buscamos utilizá-lo como plataforma para pôr em prática variadas técnicas e ferramentas de planejamento e desenvolvimento de software. O projeto foi executado por uma equipe de quatro alunos no período de 2 de junho à 1 de julho.
@@ -31,7 +36,7 @@ Tendo em vista a finalidade didática da execução de tal projeto, buscamos uti
 Dividiu-se a execução do projeto em três fases principais, \textbf{Planejamento}, \textbf{Desenvolvimento} e \textbf{Teste}.
 
 \chapter{Planejamento}
-Nesta primeira fase, que representa o início do projeto como um todo, o foco esteve em definir as bases para as fases de desenvolvimento e teste, o que inclui a determinação de um \textbf{Cronograma}, a determinação de uma \textbf{Estrutura do Projeto}, a divisão das tarefas de desenvolvimento, e a escolha das \textbf{Ferramentas} em software utilizadas pela equipe.
+Na primeira fase, o Planejamento, que representa o início do projeto como um todo, o foco esteve em definir as bases para as fases de desenvolvimento e teste, o que inclui a determinação de um \textbf{Cronograma}, a determinação de uma \textbf{Estrutura do Projeto}, a divisão das tarefas de desenvolvimento, e a escolha das \textbf{Ferramentas} em software utilizadas pela equipe.
 \section{Cronograma}
 Iniciando no dia 2 de junho, organizamos a primeira reunião da equipe de projeto, onde determinamos os primeiros tópicos a serem determinados, e a partir destes formulamos o cronograma apresentado abaixo.
 \begin{calendar}{6/1/16}{5}
@@ -137,38 +142,65 @@ gabarito & \textbf{char*} & Vetor das minas e dicas do tabuleiro \\
 \end{itemize}
 \subsection{Mecânica de Jogo}
 Neste módulo são implementadas funções relacionadas ao funcionamento do jogo, tal como rotinas para processar condições de vitória, ou rotinas para determinar os resultados de uma jogada efetuada pelo usuário. Não possui estruturas próprias. Depende do módulo \textbf{Estruturas de Dados}.
-\subsubsection{Método CriarTabuleiroUsr}
+\subsubsection{Função CriarTabuleiroUsr}
 \paragraph{Sintaxe}
 \textbf{void} {\it CriarTabuleiroUsr}(\textbf{tabuleiro\_t*} usr);\\
 Preenche o tabuleiro máscara da estrutura \textbf{tabuleiro\_t} apontado por \textbf{usr} com asteriscos, colocando-no no estado inicial.
-\subsubsection{Método ColocarBombas}
+\subsubsection{Função ColocarBombas}
 \paragraph{Sintaxe}
 \textbf{void} {\it ColocarBombas}(\textbf{tabuleiro\_t*} gabarito);\\
 Semeia o número de bombas configurado na estrutura \textbf{tabuleiro\_t} apontada por \textbf{gabarito}.
-\subsubsection{Método AvaliarVizinhos}
+\subsubsection{Função AvaliarVizinhos}
 \paragraph{Sintaxe}
 \textbf{void} {\it AvaliarVizinhos}(\textbf{tabuleiro\_t*} gabarito);\\
 Preenche o tabuleiro máscara da estrutura \textbf{tabuleiro\_t} apontado por \textbf{gabarito} com dicas da presença de bombas na vizinhança de cada casa.
-\subsubsection{Método Revela}
+\subsubsection{Função Revela}
 \paragraph{Sintaxe}
 \textbf{void} {\it Revela}(\textbf{tabuleiro\_t*} gabarito, \textbf{vec} v);\\
 Dada uma coordenada \textbf{v}, e uma estrutura \textbf{tabuleiro\_t} apontado por gabarito, revela as casas vizinhas à \textbf{v} no tabuleiro máscara da estrutura, tendo como fronteira, casas contendo dicas diferentes de zero.
-\subsubsection{Método ExecutaJogada}
+\subsubsection{Função ExecutaJogada}
 \paragraph{Sintaxe}
 \textbf{void} {\it ExecutaJogada}(\textbf{tabuleiro\_t*} gabarito, \textbf{jogada\_t*} jogada, \textbf{int*} p);\\
 Verifica o resultado de uma jogada, sendo \textbf{gabarito} um ponteiro para uma estrutura \textbf{tabuleiro\_t}, \textbf{jogada} um ponteiro para a estrutura \textbf{jogada\_t} da jogada a ser realizada, e \textbf{p} um ponteiro para a variável contador do número de minas marcadas corretamente.
-\subsubsection{Método ConfereRevelados}
+\subsubsection{Função ConfereRevelados}
 \paragraph{Sintaxe}
 \textbf{int} {\it ConfereRevelados}(\textbf{tabuleiro\_t} tab);\\
-Testa se o tabuleiro máscara da estrutura \textbf{tabuleiro\_t} apontada por \textbf{tab} já foi completamente revelado.
+Testa se o tabuleiro máscara da estrutura \textbf{tabuleiro\_t} apontada por \textbf{tab} já foi completamente revelado. Retorna 1 se \textbf{tab} foi completamente revelado, 0 no caso contrário.
 \subsection{Interface de Usuário}
-T
+Neste módulo são implementadas funções relacionadas à interface do usuário com o jogo. Nisto inclui-se por exemplo a exibição do tabuleiro em seu estado atual na tela, ou a captura dos comandos e jogadas do usuário. Depende do módulo \textbf{Estruturas de Dados}.
+\subsubsection{Função menu}
+\paragraph{Sintaxe}
+\textbf{int} {\it menu}();\\
+Imprime uma mensagem de início do jogo seguida de um menu de opções. Retorna o número da opção digitada.
+\subsubsection{Função opseguir}
+\paragraph{Sintaxe}
+\textbf{void} {\it opseguir}(\textbf{tabuleiro\_t*} p, \textbf{int*} i);\\
+Chama a função \textbf{menu()}, trata a opção retornada e captura dimensões para um novo tabuleiro. \textbf{p} é ponteiro para a estrutura \textbf{tabuleiro\_t} a ser configurada, e \textbf{i} é ponteiro para uma \textbf{int} onde será armazenada a opção escolhida(1 se o jogo deve começar e 0 se deve sair do jogo).
+\subsubsection{Função fimDeJogo}
+\paragraph{Sintaxe}
+\textbf{void} {\it fimDeJogo}(\textbf{int} i, \textbf{tabuleiro\_t} tab);\\
+Imprime uma mensagem de fim de jogo adequada à condição de término da partida. \textbf{i} é o número de minas descobertas, \textbf{tab} é o tabuleiro da partida.
+\subsubsection{Função lerJogada}
+\paragraph{Sintaxe}
+\textbf{void} {\it lerJogada}(\textbf{jogada\_t*} jog, \textbf{tabuleiro\_t} tab);\\
+Captura uma jogada digitada pelo usuário. \textbf{jog} é o ponteiro para a estrutura \textbf{jogada\_t} onde deve ser armazenada a jogada, \textbf{tab} é o tabuleiro da partida.
+\subsubsection{Função imprimirTabuleiro}
+\paragraph{Sintaxe}
+\textbf{void} {\it imprimirTabuleiro}(\textbf{tabuleiro\_t} tab);\\
+Imprime o tabuleiro \textbf{tab} formatado na tela.
 \section{Ferramentas}
-T
-\chapter{Desenvolvimento}
-T
-\section{Execução}
-T
+Visando simplificar e eliminar algumas dificuldades do processo de desenvolvimento, escolhemos fazer uso de algumas ferramentas em software.
+\subsection{Git}
+O \textbf{Git} é um sistema de controle de versão distribuído. Este sistema permite que a equipe simplesmente clone os arquivos do projeto armazenado em um repositório on-line, trabalhe em simultâneo, localmente e independentemente, em suas cópias, fazendo todas as modificações necessárias, enviando ao fim suas alterações ao repositório sem grandes problemas no momento de integrar as modificações. Isto se deve a uma das facilidades do sistema de versionamento, que trata automaticamente quase todos os conflitos causados pelas modificações, além da facilidade adicionada de todos os integrantes sempre poderem receber o projeto em sua forma mais atual sem necessitarem cloná-lo por completo novamente. Com o \textbf{Git} ainda há a possibilidade de reverter modificações específicas ou ainda de desenvolver uma versão alternativa do projeto em paralelo com a original, sem afetar o andamento do restante do projeto.
+
+O repositório do projeto pode ser encontrado em \url{https://github.com/K17K47/minesweeper}
+
+\subsection{make}
+Reconhecendo o número de arquivos presentes no projeto, realizar uma compilação manualmente se torna uma operação laboriosa, e passível de erros que afetam o desempenho do processo de teste e desenvolvimento. Assim optamos por usar o \textbf{GNU make}, uma versão de uma ferramenta de automação de compilação, que por meio de um pequeno script, que para projetos simples como o atual não precisa ser reescrito, mesmo com intensas modificações, é capaz de reduzir o ato de compilação, neste projeto, de 5 comandos no terminal para apenas 1.
+
+\subsection{\LaTeX}
+Visando facilitar também a escrita da documentação e do relatório do projeto, optamos por escrevê-lo em \LaTeX, um sistema de diagramação de textos, amplamente utilizado na escrita de documentos oficiais, artigos científicos e livros devido à sua alta qualidade tipográfica. Este sistema reduz a escrita de um texto formatado à escrita de um arquivo em uma linguagem de descrição de alto nível, desacoplando a aparência do texto de seu conteúdo, e permitindo sua compilação em diversas plataformas, mantendo ainda a mesma aparência. Este documento foi escrito com o \LaTeXe.
+
 \chapter{Conclusão}
 T
 \end{document}
