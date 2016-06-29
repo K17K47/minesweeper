@@ -106,7 +106,7 @@ void Revela( tabuleiro_t * tab, vec v ) // Na main, usa-se v = get_coord( jogada
 			}
 			v.x = x + i;
 			v.y = y + j; // Seleciona elemento vizinho ao (x,y).
-			if( ( get_usr( *tab, v ) ==  get_gabarito( *tab, v ) ) || ( get_usr( *tab, v ) == ' ') ) // Pula já revelados.
+			if( ( get_usr( *tab, v ) == get_gabarito( *tab, v ) ) || ( get_usr( *tab, v ) == ' ') || ( get_usr( *tab, v ) == '?') || ( get_usr( *tab, v ) == 'M') ) // Pula já revelados ou marcados.
 			{
 				continue;
 			}
@@ -186,4 +186,31 @@ void ExecutaJogada( tabuleiro_t * tab, jogada_t * jogada, int * p )
 	{
 		return;
 	}
+}
+
+int ConfereRevelados( tabuleiro_t tab )
+{
+	unsigned i, j;
+	vec v;
+	for( j = 0; j < get_m( tab ); j++ ) // Percorre todas as linhas.
+	{
+		for( i = 0; i < get_n( tab ); i++ ) // Percorre todas as colunas de cada linha.
+		{
+			v.x = i;
+			v.y = j;
+			if( get_gabarito( tab, v) == 'B' )
+			{
+				continue;
+			}
+			else
+			{
+				if( !( get_usr( tab, v) == get_gabarito( tab, v ) || get_usr( tab, v ) == ' ' ) )
+				{
+					return 0;
+				}
+				
+			}
+		}
+	}
+	return 1;
 }
