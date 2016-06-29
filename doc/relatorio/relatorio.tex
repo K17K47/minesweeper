@@ -136,7 +136,25 @@ gabarito & \textbf{char*} & Vetor das minas e dicas do tabuleiro \\
 \item \textbf{void} {\it set\_gabarito}(\textbf{tabuleiro\_t*} tab, \textbf{vec} v, \textbf{char} gabarito) : Armazena um caractere \textbf{gabarito} em uma determinada coordenada \textbf{v} do tabuleiro das minas e dicas.
 \end{itemize}
 \subsection{Mecânica de Jogo}
-T
+Neste módulo são implementadas funções relacionadas ao funcionamento do jogo, tal como rotinas para processar condições de vitória, ou rotinas para determinar os resultados de uma jogada efetuada pelo usuário. Não possui estruturas próprias. Depende do módulo \textbf{Estruturas de Dados}.
+\subsubsection{Método CriarTabuleiroUsr}
+\paragraph{Sintaxe}
+\textbf{void} {\it CriarTabuleiroUsr}(\textbf{tabuleiro\_t*} usr);
+\subsubsection{Método ColocarBombas}
+\paragraph{Sintaxe}
+\textbf{void} {\it ColocarBombas}(\textbf{tabuleiro\_t*} gabarito);
+\subsubsection{Método AvaliarVizinhos}
+\paragraph{Sintaxe}
+\textbf{void} {\it AvaliarVizinhos}(\textbf{tabuleiro\_t*} gabarito);
+\subsubsection{Método Revela}
+\paragraph{Sintaxe}
+\textbf{void} {\it Revela}(\textbf{tabuleiro\_t*} gabarito, \textbf{vec} v);
+\subsubsection{Método ExecutaJogada}
+\paragraph{Sintaxe}
+\textbf{void} {\it ExecutaJogada}(\textbf{tabuleiro\_t*} gabarito, \textbf{jogada\_t*} jogada, \textbf{int*} p);
+\subsubsection{Método ConfereRevelados}
+\paragraph{Sintaxe}
+\textbf{int} {\it ConfereRevelados}(\textbf{tabuleiro\_t} tab);
 \subsection{Interface de Usuário}
 T
 \section{Ferramentas}
